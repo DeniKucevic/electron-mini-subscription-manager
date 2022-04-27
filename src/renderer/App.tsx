@@ -1,14 +1,16 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { BclTitle } from './components/bcl-title';
-import './css/photon.min.css';
 import { Footer } from './layouts/footer';
+import { Header } from './layouts/header';
+
+import './styles/photon.min.css';
 
 const Hello = () => {
   return (
     <div className="window">
-      <header className="toolbar toolbar-header">
-        <h1 className="title">Header</h1>
-      </header>
+      <Header>
+        <BclTitle>This is a Header</BclTitle>
+      </Header>
       <div className="window-content">
         <div className="pane-group">
           <div className="pane-sm sidebar">...</div>
@@ -16,7 +18,7 @@ const Hello = () => {
         </div>
       </div>
       <Footer>
-        <BclTitle>Developed with ❤️ by Brixi!</BclTitle>
+        <BclTitle>Developed with ❤️ by Brixi & JonnXor!</BclTitle>
       </Footer>
     </div>
   );
