@@ -1,8 +1,11 @@
-import React from 'react';
-import { BclFooter } from 'renderer/components/bcl-footer';
+import { BclTitle } from 'renderer/components/bcl-title';
 
-export const Footer: React.FC = ({ children }) => {
-  return <BclFooter>{children}</BclFooter>;
+export const Footer = () => {
+  return (
+    <footer className="toolbar toolbar-footer">
+      <BclTitle>Developed with ❤️ by Brixi & JonnXor!</BclTitle>
+    </footer>
+  );
 };
 
 export default Footer;
