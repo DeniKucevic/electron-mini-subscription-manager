@@ -4,7 +4,7 @@ export const Sidebar = () => {
   return (
     <div className="pane-sm sidebar">
       <nav className="nav-group">
-        <h5 className="nav-group-title">Favorites</h5>
+        <h5 className="nav-group-title">Hyper Links</h5>
         <BclNavLink to="/">
           <span className="icon icon-home" />
           Home
