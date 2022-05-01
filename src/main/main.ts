@@ -29,6 +29,14 @@ const db = new sqlite3.Database('./db/db.sqlite3', (err) => {
   if (err) console.error('Database opening error: ', err);
 });
 
+db.serialize(() => {
+  db.run(
+    'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, fname TEXT, lname TEXT, address TEXT, phone TEXT, note TEXT)'
+  );
+});
+
+// db.close();
+
 // db.serialize(() => {
 //   db.run('CREATE TABLE lorem (info TEXT)');
 

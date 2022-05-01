@@ -85,6 +85,9 @@
       "buildResources": "assets",
       "output": "release/build"
     },
+    "extraFiles": [
+      "db"
+    ],
     "extraResources": [
       "./assets/**"
     ],
@@ -260,5 +263,11 @@
       }
     ],
     "singleQuote": true
+  },
+  "electronmon": {
+    "patterns": [
+      "!db",
+      "!db/**/*"
+    ]
   }
 }
