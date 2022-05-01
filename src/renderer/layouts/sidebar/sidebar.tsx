@@ -9,8 +9,12 @@ export const Sidebar = () => {
           <span className="icon icon-home" />
           Home
         </BclNavLink>
+        <BclNavLink to="/users">
+          <span className="icon icon-users" />
+          Users
+        </BclNavLink>
         <BclNavLink to="/About">
-          <span className="icon icon-download" />
+          <span className="icon icon-info-circled" />
           About
         </BclNavLink>
       </nav>

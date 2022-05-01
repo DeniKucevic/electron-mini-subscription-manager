@@ -25,31 +25,40 @@ export default class AppUpdater {
 }
 
 const sqlite3 = sqlite.verbose();
-const db = new sqlite3.Database(':memory:');
-
-db.serialize(() => {
-  db.run('CREATE TABLE lorem (info TEXT)');
-
-  const stmt = db.prepare('INSERT INTO lorem VALUES (?)');
-  for (let i = 0; i < 10; i += 1) {
-    stmt.run(`Ipsum ${i}`);
-  }
-  stmt.finalize();
-
-  db.each('SELECT rowid AS id, info FROM lorem', (_err, row) => {
-    console.log(`${row.id}: ${row.info}`);
-  });
+const db = new sqlite3.Database('./db/db.sqlite3', (err) => {
+  if (err) console.error('Database opening error: ', err);
 });
 
-db.close();
+// db.serialize(() => {
+//   db.run('CREATE TABLE lorem (info TEXT)');
+
+//   const stmt = db.prepare('INSERT INTO lorem VALUES (?)');
+//   for (let i = 0; i < 10; i += 1) {
+//     stmt.run(`Ipsum ${i}`);
+//   }
+//   stmt.finalize();
+
+//   db.each('SELECT rowid AS id, info FROM lorem', (_err, row) => {
+//     console.log(`${row.id}: ${row.info}`);
+//   });
+// });
+
+// db.close();
 
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
-  console.log('pew pew');
   event.reply('ipc-example', msgTemplate('pong'));
+});
+
+ipcMain.on('DB-request', async (event, arg) => {
+  console.log('DB-request: ', arg);
+  const sql = arg;
+  db.all(sql, (err, rows) => {
+    event.reply('DB-request', (err && err.message) || rows);
+  });
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -141,6 +150,7 @@ app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
   if (process.platform !== 'darwin') {
+    db.close();
     app.quit();
   }
 });
