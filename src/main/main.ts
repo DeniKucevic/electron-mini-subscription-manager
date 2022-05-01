@@ -31,7 +31,7 @@ const db = new sqlite3.Database('./db/db.sqlite3', (err) => {
 
 db.serialize(() => {
   db.run(
-    'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, fname TEXT, lname TEXT, address TEXT, phone TEXT, note TEXT)'
+    'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, fname TEXT NOT NULL, lname TEXT NOT NULL,email TEXT, address TEXT, phone TEXT, note TEXT, subscription_start TEXT NOT NULL, subscription_end TEXT NOT NULL)'
   );
 });
 

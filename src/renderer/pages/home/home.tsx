@@ -33,15 +33,8 @@ export const Home = () => {
   };
   return (
     <div>
-      <button type="button" onClick={handleButton}>
-        Test IPC
-      </button>
-      <button type="button" onClick={handleDropUsers}>
-        drop users
-      </button>
-      <button type="button" onClick={handleInsertUser}>
-        insert user
-      </button>
+      some statistics should be here, like how many total users, how many active
+      users, and users who subscription is about to expire
     </div>
   );
 };

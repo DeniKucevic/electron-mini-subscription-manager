@@ -7,6 +7,7 @@ import { DefaultLayout } from './layouts/default-layout';
 import { Home } from './pages/home';
 import { About } from './pages/about';
 import { Users } from './pages/users';
+import { SubscriptionModel } from './pages/subscription-models';
 
 import './styles/photon.min.css';
 
@@ -18,6 +19,7 @@ export const App = () => {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="users" element={<Users />} />
+          <Route path="subscription-model" element={<SubscriptionModel />} />
         </Route>
       </Routes>
     </Router>

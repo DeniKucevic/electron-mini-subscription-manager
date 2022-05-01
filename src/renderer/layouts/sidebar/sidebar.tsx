@@ -13,7 +13,11 @@ export const Sidebar = () => {
           <span className="icon icon-users" />
           Users
         </BclNavLink>
-        <BclNavLink to="/About">
+        <BclNavLink to="/subscription-model">
+          <span className="icon icon-archive" />
+          Subscription models
+        </BclNavLink>
+        <BclNavLink to="/about">
           <span className="icon icon-info-circled" />
           About
         </BclNavLink>
