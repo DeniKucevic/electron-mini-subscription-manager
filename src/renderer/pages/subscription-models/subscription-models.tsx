@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-autofocus */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { BclModal } from 'renderer/components/bcl-modal';
 import useModal from 'renderer/hooks/useModal';
@@ -18,9 +20,9 @@ export const SubscriptionModel: React.FC = () => {
 
   const [modelName, setModelName] = useState('');
   const [modelValue, setModelValue] = useState('1');
-  const [modelModifier, setModelModifier] = useState<'day' | 'month' | 'year'>(
-    'day'
-  );
+  const [modelModifier, setModelModifier] = useState<
+    'day' | 'month' | 'year' | string
+  >('day');
 
   const [isShowing, toggle] = useModal();
 
@@ -58,6 +60,7 @@ export const SubscriptionModel: React.FC = () => {
         window.alert(
           `Subscription model with name ${modelName} already exists!`
         );
+        window.electron.ipcRenderer.fixInput();
       }
     });
     toggle();
@@ -81,6 +84,7 @@ export const SubscriptionModel: React.FC = () => {
         fetchModels();
       });
     }
+    window.electron.ipcRenderer.fixInput();
   };
 
   return (
@@ -172,9 +176,9 @@ export const SubscriptionModel: React.FC = () => {
                 defaultValue="day"
                 onChange={(e) => setModelModifier(e.target.value)}
               >
-                <option value="day">Day</option>
+                <option value="day">day</option>
                 <option value="month">month</option>
-                <option value="year">Year</option>
+                <option value="year">year</option>
               </select>
             </div>
           </div>

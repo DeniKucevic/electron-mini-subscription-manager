@@ -38,24 +38,6 @@ db.serialize(() => {
   );
 });
 
-// db.close();
-
-// db.serialize(() => {
-//   db.run('CREATE TABLE lorem (info TEXT)');
-
-//   const stmt = db.prepare('INSERT INTO lorem VALUES (?)');
-//   for (let i = 0; i < 10; i += 1) {
-//     stmt.run(`Ipsum ${i}`);
-//   }
-//   stmt.finalize();
-
-//   db.each('SELECT rowid AS id, info FROM lorem', (_err, row) => {
-//     console.log(`${row.id}: ${row.info}`);
-//   });
-// });
-
-// db.close();
-
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
@@ -70,6 +52,11 @@ ipcMain.on('DB-request', async (event, arg) => {
   db.all(sql, (err, rows) => {
     event.reply('DB-request', (err && err.message) || rows);
   });
+});
+
+ipcMain.on('focus-fix', () => {
+  mainWindow?.blur();
+  mainWindow?.focus();
 });
 
 if (process.env.NODE_ENV === 'production') {

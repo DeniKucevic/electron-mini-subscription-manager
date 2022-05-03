@@ -3,6 +3,7 @@ declare global {
     electron: {
       ipcRenderer: {
         myPing(): void;
+        fixInput(): void;
         messageDB(request: string): void;
         on(
           channel: string,
