@@ -7,7 +7,6 @@ import { Sidebar } from './sidebar';
 export const DefaultLayout = () => {
   return (
     <div className="window">
-      <Header />
       <div className="window-content">
         <div className="pane-group">
           <Sidebar />

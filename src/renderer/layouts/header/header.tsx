@@ -1,11 +1,7 @@
-import { BclTitle } from 'renderer/components/bcl-title';
+import React from 'react';
 
-export const Header = () => {
-  return (
-    <header className="toolbar toolbar-header">
-      <BclTitle>This is a Header</BclTitle>
-    </header>
-  );
+export const Header: React.FC = ({ children }) => {
+  return <header className="toolbar toolbar-header">{children}</header>;
 };
 
 export default Header;

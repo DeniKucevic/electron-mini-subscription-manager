@@ -2,6 +2,22 @@
   "rules": {
     "no-console": "off",
     "global-require": "off",
-    "import/no-dynamic-require": "off"
+    "import/no-dynamic-require": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "warning",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "warning",
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   }
 }

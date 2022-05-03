@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import './bcl-modal.css';
 
 type BlcModalProps = {
   isShowing: boolean;
-  hide: React.MouseEventHandler<HTMLElement>;
+  hide: () => void;
 };
 
 export const BclModal: React.FC<BlcModalProps> = ({
@@ -13,7 +13,19 @@ export const BclModal: React.FC<BlcModalProps> = ({
   hide,
   children,
 }) => {
-  const handleKeyDown = () => {};
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        hide();
+      }
+    };
+
+    if (isShowing) {
+      window.addEventListener('keydown', handleEsc);
+    }
+
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isShowing, hide]);
 
   return isShowing
     ? ReactDOM.createPortal(
@@ -25,7 +37,7 @@ export const BclModal: React.FC<BlcModalProps> = ({
             className="modal-overlay"
             role="none"
             onClick={hide}
-            onKeyDown={handleKeyDown}
+            onKeyDown={() => ''}
           />
         </div>,
         document.body
