@@ -10,19 +10,22 @@ import { Users } from './pages/users';
 import { SubscriptionModel } from './pages/subscription-models';
 
 import './styles/photon.min.css';
+import { ConfirmationDialogProvider } from './context/confirmation-dialog';
 
 export const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="users" element={<Users />} />
-          <Route path="subscription-model" element={<SubscriptionModel />} />
-        </Route>
-      </Routes>
-    </Router>
+    <ConfirmationDialogProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<DefaultLayout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="users" element={<Users />} />
+            <Route path="subscription-model" element={<SubscriptionModel />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ConfirmationDialogProvider>
   );
 };
 

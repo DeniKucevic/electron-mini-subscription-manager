@@ -5,14 +5,17 @@ contextBridge.exposeInMainWorld('electron', {
     myPing() {
       ipcRenderer.send('ipc-test', 'ping');
     },
-    fixInput() {
-      ipcRenderer.send('focus-fix', 'ping');
+    getUsers() {
+      ipcRenderer.send('get-users');
+    },
+    users(request: UserProps) {
+      ipcRenderer.send('users', request);
     },
     messageDB(request: string) {
       ipcRenderer.send('DB-request', request);
     },
     on(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'DB-request', 'focus-fix'];
+      const validChannels = ['ipc-test', 'DB-request', 'get-users', 'users'];
       if (validChannels.includes(channel)) {
         const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
           func(...args);

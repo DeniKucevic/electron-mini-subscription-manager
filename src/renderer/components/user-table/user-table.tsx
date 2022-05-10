@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { format } from 'date-fns';
+import { addMonths, differenceInDays, format, isAfter } from 'date-fns';
 import { srLatn } from 'date-fns/locale';
+import { useConfirmationDialog } from 'renderer/context/confirmation-dialog';
 
 type User = {
   id: number;
@@ -19,28 +20,81 @@ export type UserTableProps = {
   handleSort: (sort: string) => void;
   handleUserModal: (user: User) => void;
   users: User[];
-  handleSubscriptionStatus: (subscriptionEnd: string) => JSX.Element;
-  handleSingleRemove: (
+};
+
+export const UserTable: React.FC<UserTableProps> = ({
+  handleSort,
+  handleUserModal,
+  users,
+}) => {
+  const today = new Date();
+  const { getConfirmation } = useConfirmationDialog();
+
+  const handleAddMonth = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number,
+    subscription_end: string,
+    fname: string,
+    lname: string
+  ) => {
+    e.stopPropagation();
+    let newSubEnd: string;
+    let newSubStart: string;
+    if (isAfter(today, Date.parse(subscription_end))) {
+      newSubEnd = addMonths(today, 1).toISOString();
+      newSubStart = today.toISOString();
+    } else {
+      newSubEnd = addMonths(Date.parse(subscription_end), 1).toISOString();
+      newSubStart = subscription_end;
+    }
+
+    const confirmed = await getConfirmation({
+      title: 'Attention!',
+      message: `Extend ${fname} ${lname} subscription from: ${format(
+        Date.parse(newSubStart),
+        'dd. MMMM yyyy.'
+      )} to: ${format(Date.parse(newSubEnd), 'dd. MMMM yyyy.')}`,
+    });
+
+    if (confirmed) {
+      window.electron.ipcRenderer.messageDB(
+        `UPDATE users
+        SET subscription_end = "${newSubEnd}",
+        subscription_start = "${subscription_end}"
+        WHERE
+        id = ${id}`
+      );
+    }
+  };
+
+  const handleSubscriptionStatus = (subscriptionEnd: string) => {
+    if (isAfter(today, Date.parse(subscriptionEnd)))
+      return <span className="icon icon-db-shape" style={{ color: 'red' }} />;
+    if (differenceInDays(Date.parse(subscriptionEnd), today) >= 3)
+      return <span className="icon icon-db-shape" style={{ color: 'green' }} />;
+
+    return <span className="icon icon-db-shape" style={{ color: 'orange' }} />;
+  };
+
+  const handleSingleRemove = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: number,
     fname: string,
     lname: string
-  ) => void;
-  handleAddMonth: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: number,
-    subscription_end: string
-  ) => void;
-};
+  ) => {
+    e.stopPropagation();
+    const confirmed = await getConfirmation({
+      title: 'Attention!',
+      message: `Are you sure you want to remove ${fname} ${lname} from database?`,
+    });
 
-export const UserTable: React.FC<UserTableProps> = ({
-  handleAddMonth,
-  handleSingleRemove,
-  handleSort,
-  handleSubscriptionStatus,
-  handleUserModal,
-  users,
-}) => {
+    if (confirmed) {
+      window.electron.ipcRenderer.messageDB(
+        `DELETE FROM users WHERE id = ${id}`
+      );
+    }
+  };
+
   return (
     <table className="table-striped">
       <thead>
@@ -95,7 +149,13 @@ export const UserTable: React.FC<UserTableProps> = ({
                       type="button"
                       className="btn btn-mini btn-default"
                       onClick={(e) =>
-                        handleAddMonth(e, user.id, user.subscription_end)
+                        handleAddMonth(
+                          e,
+                          user.id,
+                          user.subscription_end,
+                          user.fname,
+                          user.lname
+                        )
                       }
                     >
                       <span className="icon icon-plus-circled" />

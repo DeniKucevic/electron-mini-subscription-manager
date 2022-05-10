@@ -60,7 +60,6 @@ export const SubscriptionModel: React.FC = () => {
         window.alert(
           `Subscription model with name ${modelName} already exists!`
         );
-        window.electron.ipcRenderer.fixInput();
       }
     });
     toggle();
@@ -84,7 +83,6 @@ export const SubscriptionModel: React.FC = () => {
         fetchModels();
       });
     }
-    window.electron.ipcRenderer.fixInput();
   };
 
   return (

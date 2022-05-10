@@ -31,14 +31,10 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
   const [selectedSubscription, setSelectedSubscription] = useState(1);
 
   const fetchModels = () => {
-    window.electron.ipcRenderer.once('DB-request', (arg) => {
-      setModels(arg as SubscriptionModelType[]);
-    });
-    window.electron.ipcRenderer.messageDB('SELECT * FROM subscription_models');
-  };
-
-  const fetchUsers = () => {
-    window.electron.ipcRenderer.messageDB('SELECT * FROM users');
+    // window.electron.ipcRenderer.on('DB-request', (arg) => {
+    //   setModels(arg as SubscriptionModelType[]);
+    // });
+    // window.electron.ipcRenderer.messageDB('SELECT * FROM subscription_models');
   };
 
   useEffect(() => {
@@ -84,7 +80,6 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
         break;
     }
 
-    window.electron.ipcRenderer.once('DB-request', () => {});
     window.electron.ipcRenderer.messageDB(
       `INSERT INTO users (fname, lname, email, address, phone, note, subscription_start, subscription_end) VALUES ("${firstName}", "${lastName}", "${email}", "${address}", "${phone}", "${note}", "${today}", "${prepareSubscriptionEnd}")`
     );

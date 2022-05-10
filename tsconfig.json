@@ -21,7 +21,8 @@
     "allowJs": true,
     "outDir": "release/app/dist",
     "paths": {
-      "assets": ["./assets"]
+      "@assets/": ["assets/"],
+      "@db/": ["db/"]
     }
   },
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
