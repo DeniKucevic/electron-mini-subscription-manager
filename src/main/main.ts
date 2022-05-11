@@ -40,6 +40,8 @@ ipcMain.on('DB-request', async (event, arg) => {
   });
 });
 
+require('./controllers/user.controller');
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();

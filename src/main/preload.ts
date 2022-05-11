@@ -5,11 +5,49 @@ contextBridge.exposeInMainWorld('electron', {
     myPing() {
       ipcRenderer.send('ipc-test', 'ping');
     },
-    getUsers() {
-      ipcRenderer.send('get-users');
+    getAllUsers() {
+      ipcRenderer.send('get-all-users');
+    },
+    searchUsers(arg: string) {
+      ipcRenderer.send('search-users', arg);
+    },
+    sortUsers(arg: {
+      search: string;
+      sort: string;
+      sortDirection: 'ASC' | 'DSC';
+    }) {
+      ipcRenderer.send('sort-users', arg);
+    },
+    updateUsers(arg: {
+      id: string;
+      fname: string;
+      lname: string;
+      email: string;
+      address: string;
+      phone: string;
+      note: string;
+      subscriptionStart: string;
+      subscriptionEnd: string;
+    }) {
+      ipcRenderer.send('update-users', arg);
+    },
+    deleteUser(arg: { id: string }) {
+      ipcRenderer.send('delete-user', arg);
     },
     users(request: UserProps) {
       ipcRenderer.send('users', request);
+    },
+    insertUser(request: {
+      firstName: string;
+      lastName: string;
+      address: string;
+      email: string;
+      note: string;
+      phone: string;
+      subscriptionStart: string;
+      subscriptionEnd: string;
+    }) {
+      ipcRenderer.send('insert-user', request);
     },
     messageDB(request: string) {
       ipcRenderer.send('DB-request', request);

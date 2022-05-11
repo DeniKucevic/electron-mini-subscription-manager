@@ -80,9 +80,16 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
         break;
     }
 
-    window.electron.ipcRenderer.messageDB(
-      `INSERT INTO users (fname, lname, email, address, phone, note, subscription_start, subscription_end) VALUES ("${firstName}", "${lastName}", "${email}", "${address}", "${phone}", "${note}", "${today}", "${prepareSubscriptionEnd}")`
-    );
+    window.electron.ipcRenderer.insertUser({
+      firstName,
+      lastName,
+      email,
+      address,
+      phone,
+      note,
+      subscriptionStart: today,
+      subscriptionEnd: prepareSubscriptionEnd,
+    });
     toggle();
   };
 

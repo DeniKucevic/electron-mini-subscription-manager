@@ -89,9 +89,7 @@ export const UserTable: React.FC<UserTableProps> = ({
     });
 
     if (confirmed) {
-      window.electron.ipcRenderer.messageDB(
-        `DELETE FROM users WHERE id = ${id}`
-      );
+      window.electron.ipcRenderer.deleteUser({ id });
     }
   };
 

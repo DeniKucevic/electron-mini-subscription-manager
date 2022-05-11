@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, { useEffect, useState } from 'react';
 
 import useModal from 'renderer/hooks/useModal';
@@ -33,20 +34,13 @@ export const Users: React.FC = () => {
   const [isShowing, toggle] = useModal();
   const [isShowingUser, toggleUser] = useModal();
 
-  const fetchUsers = () => {
-    window.electron.ipcRenderer.messageDB('SELECT * FROM users');
-  };
-
-  window.electron.ipcRenderer.once('DB-request', (arg) => {
-    console.log('oops', arg);
-    if (arg[0] && arg[0].fname) {
-      setUsers(arg as User[]);
-    }
+  window.electron.ipcRenderer.on('users', (arg) => {
+    setUsers(arg as User[]);
   });
 
   useEffect(() => {
-    if (!isShowing) fetchUsers();
-  }, [isShowing]);
+    window.electron.ipcRenderer.getAllUsers();
+  }, []);
 
   const handleUserModal = (user: User) => {
     setSelectedUser(user);
@@ -55,34 +49,43 @@ export const Users: React.FC = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    window.electron.ipcRenderer.messageDB(
-      `SELECT * FROM users WHERE fname LIKE "%${e.target.value}%" OR lname LIKE "%${e.target.value}%"`
-    );
+    window.electron.ipcRenderer.searchUsers(e.target.value);
   };
 
   const handleSort = (sort: string) => {
     setLastSortDirection(lastSortDirection === 'ASC' ? 'DESC' : 'ASC');
 
-    window.electron.ipcRenderer.messageDB(
-      `SELECT * FROM users WHERE fname LIKE "%${search}%" OR lname LIKE "%${search}%" ORDER BY "${sort}" ${lastSortDirection}`
-    );
+    window.electron.ipcRenderer.sortUsers({
+      search,
+      sort,
+      sortDirection: lastSortDirection,
+    });
   };
 
   const handleUserEdit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    window.electron.ipcRenderer.messageDB(
-      `UPDATE users
-      SET fname = "${selectedUser.fname}",
-      lname = "${selectedUser.lname}",
-      email = "${selectedUser.email}",
-      address = "${selectedUser.address}",
-      phone = "${selectedUser.phone}",
-      note = "${selectedUser.note}",
-      subscription_start = "${selectedUser.subscription_start}",
-      subscription_end = "${selectedUser.subscription_end}"
-      WHERE
-      id = ${selectedUser.id}`
-    );
+    const {
+      address,
+      email,
+      fname,
+      id,
+      lname,
+      note,
+      phone,
+      subscription_end,
+      subscription_start,
+    } = selectedUser;
+    window.electron.ipcRenderer.updateUsers({
+      address,
+      email,
+      fname,
+      id,
+      lname,
+      note,
+      phone,
+      subscriptionEnd: subscription_end,
+      subscriptionStart: subscription_start,
+    });
     toggleUser();
   };
 
