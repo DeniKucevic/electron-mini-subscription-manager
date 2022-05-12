@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { BclModal } from 'renderer/components/bcl-modal';
+import { useConfirmationDialog } from 'renderer/context/confirmation-dialog';
 import useModal from 'renderer/hooks/useModal';
 import { Header } from 'renderer/layouts/header';
 
@@ -13,6 +14,8 @@ type SubscriptionModelType = {
 };
 
 export const SubscriptionModel: React.FC = () => {
+  const { getConfirmation } = useConfirmationDialog();
+
   const [models, setModels] = useState<SubscriptionModelType[]>([]);
   const [lastSortDirection, setLastSortDirection] = useState<'ASC' | 'DESC'>(
     'DESC'
@@ -57,25 +60,27 @@ export const SubscriptionModel: React.FC = () => {
       if (args[0].length === 0) {
         fetchModels();
       } else {
-        window.alert(
-          `Subscription model with name ${modelName} already exists!`
-        );
+        getConfirmation({
+          title: 'Attention!',
+          message: `Subscription model with name ${modelName} already exists!`,
+        });
       }
     });
     toggle();
   };
 
-  const handleSingleRemove = (
+  const handleSingleRemove = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: number,
     name: string
   ) => {
     e.stopPropagation();
-    if (
-      window.confirm(
-        `Are you sure you want to remove ${name} model from database? \n \n \n! 𝘛𝘩𝘪𝘴 𝘢𝘤𝘵𝘪𝘰𝘯 𝘪𝘴 𝘪𝘳𝘳𝘦𝘷𝘦𝘳𝘴𝘪𝘣𝘭𝘦 !`
-      )
-    ) {
+    const confirmed = await getConfirmation({
+      title: 'Attention!',
+      message: `Are you sure you want to remove ${name} model from database?`,
+    });
+
+    if (confirmed) {
       window.electron.ipcRenderer.messageDB(
         `DELETE FROM subscription_models WHERE id = ${id}`
       );
@@ -87,7 +92,7 @@ export const SubscriptionModel: React.FC = () => {
 
   return (
     // <div>
-    //   here should be a different models for subscription (1 motnh, 10 days,
+    //   here should be a different models for subscription (1 month, 10 days,
     //   ...etc) and user should be able to make new ones, delete unwanted ones,
     //   alter maybe?, also this should fill the select when creating user or
     //   adding subscription

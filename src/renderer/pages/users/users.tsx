@@ -99,13 +99,7 @@ export const Users: React.FC = () => {
             onChange={(e) => handleSearch(e)}
           />
 
-          <button
-            type="button"
-            className="btn btn-default"
-            onClick={() =>
-              window.electron.ipcRenderer.messageDB('SELECT * FROM users')
-            }
-          >
+          <button type="button" className="btn btn-default">
             <span className="icon icon-search icon-text" />
             Filters
           </button>

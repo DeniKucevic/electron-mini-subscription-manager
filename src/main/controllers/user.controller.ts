@@ -67,11 +67,10 @@ ipcMain.on(
     subscription_end = "${subscriptionEnd}"
     WHERE
     id = ${id}`;
-    db.all(sql, (err, rows) => {
-      event.reply('users', (err && err.message) || rows);
+    db.all(sql, (err) => {
       if (err) event.reply('error', err && err.message);
-      db.all('SELECT * FROM users', (err2, rows2) => {
-        event.reply('users', (err2 && err2.message) || rows2);
+      db.all('SELECT * FROM users', (err2, rows) => {
+        event.reply('users', (err2 && err2.message) || rows);
       });
     });
   }
@@ -80,11 +79,10 @@ ipcMain.on(
 ipcMain.on('delete-user', async (event, arg: { id: number }) => {
   const { id } = arg;
   const sql = `DELETE FROM users WHERE id = ${id}`;
-  db.all(sql, (err, rows) => {
-    event.reply('users', (err && err.message) || rows);
+  db.all(sql, (err) => {
     if (err) event.reply('error', err && err.message);
-    db.all('SELECT * FROM users', (err2, rows2) => {
-      event.reply('users', (err2 && err2.message) || rows2);
+    db.all('SELECT * FROM users', (err2, rows) => {
+      event.reply('users', (err2 && err2.message) || rows);
     });
   });
 });
@@ -115,11 +113,35 @@ ipcMain.on(
       subscriptionStart,
     } = arg;
     const sql = `INSERT INTO users (fname, lname, email, address, phone, note, subscription_start, subscription_end) VALUES ("${firstName}", "${lastName}", "${email}", "${address}", "${phone}", "${note}", "${subscriptionStart}", "${subscriptionEnd}")`;
-    db.all(sql, (err, rows) => {
-      event.reply('users', (err && err.message) || rows);
+    db.all(sql, (err) => {
       if (err) event.reply('error', err && err.message);
-      db.all('SELECT * FROM users', (err2, rows2) => {
-        event.reply('users', (err2 && err2.message) || rows2);
+      db.all('SELECT * FROM users', (err2, rows) => {
+        event.reply('users', (err2 && err2.message) || rows);
+      });
+    });
+  }
+);
+
+ipcMain.on(
+  'update-user-subscription',
+  async (
+    event,
+    arg: {
+      id: number;
+      newSubEnd: string;
+      newSubStart: string;
+    }
+  ) => {
+    const { id, newSubEnd, newSubStart } = arg;
+    const sql = `UPDATE users
+    SET subscription_end = "${newSubEnd}",
+    subscription_start = "${newSubStart}"
+    WHERE
+    id = ${id}`;
+    db.all(sql, (err) => {
+      if (err) event.reply('error', err && err.message);
+      db.all('SELECT * FROM users', (err2, rows) => {
+        event.reply('users', (err2 && err2.message) || rows);
       });
     });
   }

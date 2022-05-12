@@ -19,7 +19,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   return (
     <BclModal isShowing={open} hide={onDismiss}>
       <div style={{ textAlign: 'center' }}>
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         <p>{message}</p>
         <div className="toolbar-actions">
           <button type="button" className="btn btn-default" onClick={onDismiss}>

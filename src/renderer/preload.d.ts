@@ -42,6 +42,11 @@ declare global {
           subscriptionStart: Date | string;
           subscriptionEnd: Date | string;
         }): void;
+        updateUserSubscription(request: {
+          id: number;
+          newSubEnd: string;
+          newSubStart: string;
+        }): void;
         messageDB(request: string): void;
         on(
           channel: string,

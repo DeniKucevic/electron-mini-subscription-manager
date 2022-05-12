@@ -5,6 +5,8 @@ contextBridge.exposeInMainWorld('electron', {
     myPing() {
       ipcRenderer.send('ipc-test', 'ping');
     },
+
+    // USERS
     getAllUsers() {
       ipcRenderer.send('get-all-users');
     },
@@ -34,9 +36,6 @@ contextBridge.exposeInMainWorld('electron', {
     deleteUser(arg: { id: string }) {
       ipcRenderer.send('delete-user', arg);
     },
-    users(request: UserProps) {
-      ipcRenderer.send('users', request);
-    },
     insertUser(request: {
       firstName: string;
       lastName: string;
@@ -49,6 +48,14 @@ contextBridge.exposeInMainWorld('electron', {
     }) {
       ipcRenderer.send('insert-user', request);
     },
+    updateUserSubscription(request: {
+      id: number;
+      newSubEnd: string;
+      newSubStart: string;
+    }) {
+      ipcRenderer.send('update-user-subscription', request);
+    },
+    // MODELS
     messageDB(request: string) {
       ipcRenderer.send('DB-request', request);
     },

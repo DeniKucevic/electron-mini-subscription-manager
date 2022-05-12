@@ -57,13 +57,11 @@ export const UserTable: React.FC<UserTableProps> = ({
     });
 
     if (confirmed) {
-      window.electron.ipcRenderer.messageDB(
-        `UPDATE users
-        SET subscription_end = "${newSubEnd}",
-        subscription_start = "${subscription_end}"
-        WHERE
-        id = ${id}`
-      );
+      window.electron.ipcRenderer.updateUserSubscription({
+        id,
+        newSubEnd,
+        newSubStart: subscription_end,
+      });
     }
   };
 
