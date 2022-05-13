@@ -10,7 +10,7 @@ ipcMain.on('get-all-sub-models', async (event) => {
 
 ipcMain.on(
   'sort-sub-models',
-  async (event, arg: { sort: string; sortDirection: 'ASC' | 'DSC' }) => {
+  async (event, arg: { sort: string; sortDirection: 'ASC' | 'DESC' }) => {
     const { sort, sortDirection } = arg;
     const sql = `SELECT * FROM subscription_models ORDER BY "${sort}" ${sortDirection}`;
     db.all(sql, (err, rows) => {

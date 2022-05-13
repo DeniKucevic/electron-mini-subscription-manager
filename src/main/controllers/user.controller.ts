@@ -19,7 +19,7 @@ ipcMain.on(
   'sort-users',
   async (
     event,
-    arg: { search: string; sort: string; sortDirection: 'ASC' | 'DSC' }
+    arg: { search: string; sort: string; sortDirection: 'ASC' | 'DESC' }
   ) => {
     const { search, sort, sortDirection } = arg;
     const sql = `SELECT * FROM users WHERE fname LIKE "%${search}%" OR lname LIKE "%${search}%" ORDER BY "${sort}" ${sortDirection}`;

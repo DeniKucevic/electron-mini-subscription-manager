@@ -16,7 +16,7 @@ contextBridge.exposeInMainWorld('electron', {
     sortUsers(arg: {
       search: string;
       sort: string;
-      sortDirection: 'ASC' | 'DSC';
+      sortDirection: 'ASC' | 'DESC';
     }) {
       ipcRenderer.send('sort-users', arg);
     },
@@ -56,11 +56,26 @@ contextBridge.exposeInMainWorld('electron', {
       ipcRenderer.send('update-user-subscription', request);
     },
     // MODELS
-    messageDB(request: string) {
-      ipcRenderer.send('DB-request', request);
+    getAllSubModels() {
+      ipcRenderer.send('get-all-sub-models');
     },
+    sortSubModels(request: { sort: string; sortDirection: 'ASC' | 'DESC' }) {
+      ipcRenderer.send('sort-sub-models', request);
+    },
+    insertSubModel(request: {
+      modelName: string;
+      modelValue: string;
+      modelModifier: string;
+    }) {
+      ipcRenderer.send('insert-sub-model', request);
+    },
+    deleteSubModel(request: { id: number }) {
+      ipcRenderer.send('delete-sub-model', request);
+    },
+    //
+
     on(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'DB-request', 'get-users', 'users'];
+      const validChannels = ['ipc-test', 'DB-request', 'users', 'models'];
       if (validChannels.includes(channel)) {
         const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
           func(...args);
@@ -73,7 +88,7 @@ contextBridge.exposeInMainWorld('electron', {
       return undefined;
     },
     once(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'DB-request', 'focus-fix'];
+      const validChannels = ['ipc-test', 'DB-request', 'users', 'models'];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.once(channel, (_event, ...args) => func(...args));

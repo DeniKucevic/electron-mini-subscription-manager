@@ -29,43 +29,42 @@ export const SubscriptionModel: React.FC = () => {
 
   const [isShowing, toggle] = useModal();
 
-  const fetchModels = () => {
-    window.electron.ipcRenderer.once('DB-request', (arg) => {
-      setModels(arg as []);
-    });
-    window.electron.ipcRenderer.messageDB('SELECT * FROM subscription_models');
-  };
+  window.electron.ipcRenderer.on('models', (arg) => {
+    setModels(arg as []);
+  });
 
   useEffect(() => {
-    fetchModels();
+    window.electron.ipcRenderer.getAllSubModels();
   }, []);
 
   const handleSort = (sort: string) => {
     setLastSortDirection(lastSortDirection === 'ASC' ? 'DESC' : 'ASC');
 
-    window.electron.ipcRenderer.messageDB(
-      `SELECT * FROM subscription_models ORDER BY "${sort}" ${lastSortDirection}`
-    );
-    window.electron.ipcRenderer.once('DB-request', (args) => {
-      setModels(args as SubscriptionModelType[]);
+    window.electron.ipcRenderer.sortSubModels({
+      sort,
+      sortDirection: lastSortDirection,
     });
   };
 
   const handleNewModel = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    window.electron.ipcRenderer.messageDB(
-      `INSERT INTO subscription_models (name, value, modifier) VALUES ("${modelName}", "${modelValue}", "${modelModifier}")`
-    );
-    window.electron.ipcRenderer.once('DB-request', (...args: any) => {
-      if (args[0].length === 0) {
-        fetchModels();
-      } else {
-        getConfirmation({
-          title: 'Attention!',
-          message: `Subscription model with name ${modelName} already exists!`,
-        });
-      }
+    window.electron.ipcRenderer.insertSubModel({
+      modelModifier,
+      modelName,
+      modelValue,
     });
+
+    // HANDLE ERRORS!!
+
+    //   if (args[0].length === 0) {
+    //     fetchModels();
+    //   } else {
+    //     getConfirmation({
+    //       title: 'Attention!',
+    //       message: `Subscription model with name ${modelName} already exists!`,
+    //     });
+    //   }
+    // );
     toggle();
   };
 
@@ -81,12 +80,7 @@ export const SubscriptionModel: React.FC = () => {
     });
 
     if (confirmed) {
-      window.electron.ipcRenderer.messageDB(
-        `DELETE FROM subscription_models WHERE id = ${id}`
-      );
-      window.electron.ipcRenderer.once('DB-request', () => {
-        fetchModels();
-      });
+      window.electron.ipcRenderer.deleteSubModel({ id });
     }
   };
 

@@ -1,17 +1,9 @@
 declare global {
-  type UserProps = {
-    qry:
-      | 'get-all-users'
-      | 'get-user-by-id'
-      | 'add-user'
-      | 'update-user'
-      | string;
-    arg: string;
-  };
   interface Window {
     electron: {
       ipcRenderer: {
         myPing(): void;
+        // USERS
         getAllUsers(): void;
         searchUsers(arg: string): void;
         sortUsers(arg: {
@@ -31,7 +23,6 @@ declare global {
           subscriptionEnd: string;
         }): void;
         deleteUser(arg: { id: number }): void;
-        users(request: UserProps): void;
         insertUser(request: {
           firstName: string;
           lastName: string;
@@ -47,7 +38,19 @@ declare global {
           newSubEnd: string;
           newSubStart: string;
         }): void;
-        messageDB(request: string): void;
+        // MODELS
+        getAllSubModels(): void;
+        sortSubModels(request: {
+          sort: string;
+          sortDirection: 'ASC' | 'DESC';
+        }): void;
+        insertSubModel(request: {
+          modelName: string;
+          modelValue: string;
+          modelModifier: string;
+        }): void;
+        deleteSubModel(request: { id: number }): void;
+        //
         on(
           channel: string,
           func: (...args: unknown[]) => void

@@ -32,15 +32,8 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
-ipcMain.on('DB-request', async (event, arg) => {
-  console.log('DB-request: ', arg);
-  const sql = arg;
-  db.all(sql, (err, rows) => {
-    event.reply('DB-request', (err && err.message) || rows);
-  });
-});
-
 require('./controllers/user.controller');
+require('./controllers/subscription.controller');
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

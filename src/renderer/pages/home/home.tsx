@@ -7,16 +7,16 @@ export const Home: React.FC = () => {
   const [count, setCount] = useState<any>([]);
 
   useEffect(() => {
-    const today = new Date();
-    window.electron.ipcRenderer.once('DB-request', (arg) => {
-      setCount(arg as any);
-    });
-    window.electron.ipcRenderer.messageDB(
-      `SELECT id, COUNT(*) AS total,
-      SUM(CASE WHEN subscription_end < "${today.toISOString()}" THEN 1 ELSE 0 END) expired_count,
-      SUM(CASE WHEN subscription_end > "${today.toISOString()}" THEN 1 ELSE 0 END) valid_count
-      FROM users`
-    );
+    // const today = new Date();
+    // window.electron.ipcRenderer.once('DB-request', (arg) => {
+    //   setCount(arg as any);
+    // });
+    // window.electron.ipcRenderer.messageDB(
+    //   `SELECT id, COUNT(*) AS total,
+    //   SUM(CASE WHEN subscription_end < "${today.toISOString()}" THEN 1 ELSE 0 END) expired_count,
+    //   SUM(CASE WHEN subscription_end > "${today.toISOString()}" THEN 1 ELSE 0 END) valid_count
+    //   FROM users`
+    // );
     //     SELECT ProductID,
     //     COUNT(*) AS Total,
     //     SUM(CASE WHEN pStatus = 'delivered' THEN 1 ELSE 0 END) DeliveredCount,
