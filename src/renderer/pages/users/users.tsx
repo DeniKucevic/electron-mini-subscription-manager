@@ -34,7 +34,7 @@ export const Users: React.FC = () => {
   const [isShowing, toggle] = useModal();
   const [isShowingUser, toggleUser] = useModal();
 
-  window.electron.ipcRenderer.on('users', (arg) => {
+  window.electron.ipcRenderer.once('users', (arg) => {
     setUsers(arg as User[]);
   });
 

@@ -30,18 +30,13 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
   const [note, setNote] = useState<string | null>(null);
   const [selectedSubscription, setSelectedSubscription] = useState(1);
 
-  const fetchModels = () => {
-    // window.electron.ipcRenderer.on('DB-request', (arg) => {
-    //   setModels(arg as SubscriptionModelType[]);
-    // });
-    // window.electron.ipcRenderer.messageDB('SELECT * FROM subscription_models');
-  };
+  window.electron.ipcRenderer.once('models', (args) => {
+    setModels(args as SubscriptionModelType[]);
+  });
 
   useEffect(() => {
-    if (isShowing) {
-      fetchModels();
-    }
-  }, [isShowing]);
+    window.electron.ipcRenderer.getAllSubModels();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

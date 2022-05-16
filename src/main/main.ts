@@ -32,6 +32,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
+require('./controllers/home.controller');
 require('./controllers/user.controller');
 require('./controllers/subscription.controller');
 

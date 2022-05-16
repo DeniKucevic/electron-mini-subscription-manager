@@ -3,6 +3,8 @@ declare global {
     electron: {
       ipcRenderer: {
         myPing(): void;
+        // HOME
+        getHomeChart(arg: { today: Date }): void;
         // USERS
         getAllUsers(): void;
         searchUsers(arg: string): void;

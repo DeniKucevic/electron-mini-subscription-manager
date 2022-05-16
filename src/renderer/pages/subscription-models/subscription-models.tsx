@@ -29,7 +29,7 @@ export const SubscriptionModel: React.FC = () => {
 
   const [isShowing, toggle] = useModal();
 
-  window.electron.ipcRenderer.on('models', (arg) => {
+  window.electron.ipcRenderer.once('models', (arg) => {
     setModels(arg as []);
   });
 
