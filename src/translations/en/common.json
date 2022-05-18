@@ -1,5 +1,12 @@
 {
   "home": {
-      "title": "Welcome to {{framework}}"
+    "valid-users": "Valid users",
+    "expired-users": "Expired users"
+  },
+  "user-table": {
+    "first-name": "First name",
+    "last-name": "Last name",
+    "sub-start": "Subscription start",
+    "sub-end": "Subscription end"
   }
 }

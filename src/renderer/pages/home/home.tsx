@@ -40,10 +40,9 @@ export const Home: React.FC = () => {
   }, []);
 
   const data = {
-    labels: ['Valid users', 'Expired users'],
+    labels: [t('home.valid-users'), t('home.expired-users')],
     datasets: [
       {
-        label: '# of Users',
         data: [count[0]?.valid_count, count[0]?.expired_count],
         backgroundColor: ['green', 'red'],
         borderColor: ['green', 'red'],
@@ -69,7 +68,6 @@ export const Home: React.FC = () => {
         flexDirection: 'column',
       }}
     >
-      {t('welcome.title', { framework: 'React' })}
       <div
         style={{
           padding: '1rem',
@@ -88,10 +86,10 @@ export const Home: React.FC = () => {
           <thead>
             <tr>
               <th>id</th>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Subscription start</th>
-              <th>Subscription end</th>
+              <th>{t('user-table.first-name')}</th>
+              <th>{t('user-table.last-name')}</th>
+              <th>{t('user-table.sub-start')}</th>
+              <th>{t('user-table.sub-end')}</th>
               <th>Status</th>
             </tr>
           </thead>

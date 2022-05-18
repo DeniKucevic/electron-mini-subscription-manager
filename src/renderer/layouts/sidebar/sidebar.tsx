@@ -1,6 +1,10 @@
+import i18next from 'i18next';
 import { BclNavLink } from 'renderer/components/bcl-nav-link';
 
 export const Sidebar = () => {
+  const handleLanguageSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    i18next.changeLanguage(e.target.value);
+  };
   return (
     <div className="pane-sm sidebar">
       <nav className="nav-group">
@@ -22,6 +26,14 @@ export const Sidebar = () => {
           About
         </BclNavLink>
       </nav>
+      <select
+        className="form-control"
+        onChange={(e) => handleLanguageSelect(e)}
+      >
+        {Object.keys(i18next.services.resourceStore.data).map((language) => (
+          <option key={language}>{language}</option>
+        ))}
+      </select>
     </div>
   );
 };

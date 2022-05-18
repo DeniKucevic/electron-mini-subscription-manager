@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import common_sr from '../translations/sr/common.json';
 import common_en from '../translations/en/common.json';
 

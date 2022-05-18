@@ -1,5 +1,12 @@
 {
-  "welcome": {
-      "title": "Willkommen bei {{framework}}"
+  "home": {
+    "valid-users": "Aktivni korisnici",
+    "expired-users": "Istekli korisnici"
+  },
+  "user-table": {
+    "first-name": "Ime",
+    "last-name": "Prezime",
+    "sub-start": "Pocetak pretplate",
+    "sub-end": "Kraj pretplate"
   }
 }
