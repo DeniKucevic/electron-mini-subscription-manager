@@ -1,6 +1,4 @@
-title: Macaw
-created at: Fri May 20 2022 20:35:33 GMT+0000 (Coordinated Universal Time)
-updated at: Fri May 20 2022 22:23:18 GMT+0000 (Coordinated Universal Time)
+![image.png](media_Macaw/titleimg.png)
 
 ---
 
