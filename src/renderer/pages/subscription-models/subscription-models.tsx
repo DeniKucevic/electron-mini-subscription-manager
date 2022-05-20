@@ -56,17 +56,6 @@ export const SubscriptionModel: React.FC = () => {
       modelValue,
     });
 
-    // HANDLE ERRORS!!
-
-    //   if (args[0].length === 0) {
-    //     fetchModels();
-    //   } else {
-    //     getConfirmation({
-    //       title: 'Attention!',
-    //       message: `Subscription model with name ${modelName} already exists!`,
-    //     });
-    //   }
-    // );
     toggle();
   };
 
