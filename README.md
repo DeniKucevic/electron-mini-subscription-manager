@@ -8,13 +8,13 @@
 
 **Software Version: 1.0.0**
 
-**Technical Information: Built with **[**electron-react-boilerplate**](https://electron-react-boilerplate.js.org/)
+**Technical Information: Built with**[**electron-react-boilerplate**](https://electron-react-boilerplate.js.org/)
 
-**Software Summary **🧠
+**Software Summary**🧠
 
 This software is intended for keeping subscription records. The focus of the macaw is to solve the problem of record-keeping for a small business that does not need a complete solution but a simple record-keeping app. Wholly open-source and free.
 
-**How-To Guide **🔍
+**How-To Guide**🔍
 
 To run the app locally download the repo, install the dependencies:
 
@@ -38,7 +38,7 @@ This will output the installer to the release folder.
 
 ---
 
-**Tutorials **🙋🏼‍♂️
+**Tutorials**🙋🏼‍♂️
 
 ### **Layout of the app**:
 
@@ -132,21 +132,21 @@ That will give us a subscription named "Week sub" that will last for 7 days (a w
 
 ---
 
-- **Error message: **
+- **Error message**
 
 ![image.png](media_Macaw/ddb09b11-9fdb-402c-99dd-f22e08275c7e_image.png)
 
 If you see this message something went wrong. If you have trouble figuring it out this would be a SQL error shown so try searching on the internet. If you still have trouble you can try emailing me: [denikucevic@gmail.com](mailto:denikucevic@gmail.com).
 
-**Customer Support **💭
+**Customer Support**💭
 
 If you have trouble with software, question, want some feature built in for you, something changed or want to support me you can contact me on **email**: [denikucevic@gmail.com](mailto:denikucevic@gmail.com)
 
 or try on linkedin: [denikucevic](https://www.linkedin.com/in/denis-kucevic/)
 
-If you are looking for the **souce code **you can find in on my github: [DeniKucevic](https://github.com/DeniKucevic/electron-mini-subscription-manager)
+If you are looking for the **souce code** you can find in on my github: [DeniKucevic](https://github.com/DeniKucevic/electron-mini-subscription-manager)
 
-**Additional Comments **🔔
+**Additional Comments**🔔
 
 This app is created for my friend to help him manage his gym. I tried to best of my skills to make it as simple as possible for use and general enough for different use cases.
 
