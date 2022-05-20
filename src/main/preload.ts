@@ -79,7 +79,7 @@ contextBridge.exposeInMainWorld('electron', {
     //
 
     on(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'home', 'users', 'models'];
+      const validChannels = ['ipc-test', 'home', 'users', 'models', 'error'];
       if (validChannels.includes(channel)) {
         const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
           func(...args);
@@ -91,8 +91,9 @@ contextBridge.exposeInMainWorld('electron', {
 
       return undefined;
     },
+
     once(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'home', 'users', 'models'];
+      const validChannels = ['ipc-test', 'home', 'users', 'models', 'error'];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.once(channel, (_event, ...args) => func(...args));

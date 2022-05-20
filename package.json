@@ -86,7 +86,7 @@
       "output": "release/build"
     },
     "extraFiles": [
-      "db"
+      "./db/**"
     ],
     "extraResources": [
       "./assets/**"
@@ -240,7 +240,8 @@
     "react-date-range": "^1.4.0",
     "react-dom": "^18.0.0",
     "react-i18next": "^11.16.9",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-toastify": "^9.0.1"
   },
   "devEngines": {
     "node": ">=14.x",
@@ -263,7 +264,7 @@
   },
   "electronmon": {
     "patterns": [
-      "!src/dbdb",
+      "!src/db",
       "!src/db/**/*",
       "!*.sqlite3"
     ]

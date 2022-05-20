@@ -1,0 +1,56 @@
+{
+  "home": {
+    "valid-users": "Активни корисници",
+    "expired-users": "Истекли корисници"
+  },
+  "user-table": {
+    "first-name": "Име",
+    "last-name": "Презиме",
+    "note": "Белешка",
+    "actions": "Акције",
+    "sub-start": "Почетак претплате",
+    "sub-end": "Крај претплате",
+    "insert-new-user": "Додај корисника",
+    "filters": "Филтери",
+    "search": "Претрага",
+    "subscription": "Претплата",
+    "id": "ИД",
+    "status": "Статус"
+  },
+  "subscription-models": {
+    "name": "Назив",
+    "value": "Вредност",
+    "modifier": "Модификатор",
+    "actions": "Акције",
+    "insert-new-model": "Додај нови модел",
+    "select": {
+      "days": "Дана",
+      "months": "Месеци",
+      "years": "Година"
+    }
+  },
+  "links": {
+    "title": "Навигација",
+    "home": "Почетна",
+    "users": "Корисници",
+    "subscription-models": "Модели претплате",
+    "about": "Информације",
+    "language": "Језик"
+  },
+  "commons": {
+    "save": "Сними",
+    "cancel": "Поништи",
+    "email": "Е-пошта",
+    "tel": "Телефон",
+    "address": "Адреса",
+    "day": "Дан",
+    "month": "Месец",
+    "year": "Година"
+  },
+  "messages": {
+    "extend-subscription": "Продужи <strong>{{fname}} {{lname}}</strong> претплату од: <strong>{{dateFrom}}</strong> до: <strong>{{dateTo}}</strong>",
+    "remove-user": "Да ли сте сигурни да желите да обришете <strong>{{fname}} {{lname}}</strong> из базе?",
+    "remove-model": "Да ли сте сигурни да желите да обришете <strong>{{name}}</strong> модел из базе?",
+    "title": "Пажња!"
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { addDays, addYears, addMonths } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import { BclModal } from '../bcl-modal';
 
 type SubscriptionModelType = {
@@ -20,13 +21,15 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
   toggle,
 }) => {
   const today = new Date();
+  const { t } = useTranslation();
+
   const [models, setModels] = useState<SubscriptionModelType[]>([]);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState<string | null>(null);
-  const [address, setAddress] = useState<string | null>(null);
-  const [phone, setPhone] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>('');
+  const [address, setAddress] = useState<string | null>('');
+  const [phone, setPhone] = useState<string | null>('');
   const [note, setNote] = useState<string | null>(null);
   const [selectedSubscription, setSelectedSubscription] = useState(1);
 
@@ -98,7 +101,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
               autoFocus
               type="text"
               className="form-control"
-              placeholder="First name"
+              placeholder={t('common:user-table.first-name')}
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
@@ -107,7 +110,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
             <input
               type="text"
               className="form-control"
-              placeholder="Last name"
+              placeholder={t('common:user-table.last-name')}
               onChange={(e) => setLastName(e.target.value)}
               required
             />
@@ -116,7 +119,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
             <input
               type="email"
               className="form-control"
-              placeholder="Email"
+              placeholder={t('common:commons.email')}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -125,7 +128,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
               type="text"
               className="form-control"
               onChange={(e) => setAddress(e.target.value)}
-              placeholder="Address"
+              placeholder={t('common:commons.address')}
             />
           </div>
           <div className="form-group">
@@ -133,11 +136,11 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
               type="tel"
               className="form-control"
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="Phone"
+              placeholder={t('common:commons.tel')}
             />
           </div>
           <div className="form-group">
-            Note:
+            {t('common:user-table.note')}
             <textarea
               className="form-control"
               rows={3}
@@ -145,7 +148,7 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
             />
           </div>
           <div className="form-group">
-            Subscription:
+            {t('common:user-table.subscription')}
             <select
               className="form-control"
               defaultValue={models[0]?.id}
@@ -166,10 +169,10 @@ export const AddUserModal: React.FC<AddUserModalProps> = ({
               className="btn btn-form btn-default"
               onClick={toggle}
             >
-              Cancel
+              {t('common:commons.cancel')}
             </button>
             <button type="submit" className="btn btn-form btn-primary">
-              OK
+              {t('common:commons.save')}
             </button>
           </div>
         </form>

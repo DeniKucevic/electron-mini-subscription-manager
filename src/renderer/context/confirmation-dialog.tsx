@@ -19,8 +19,8 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
   return (
     <BclModal isShowing={open} hide={onDismiss}>
       <div style={{ textAlign: 'center' }}>
-        <h4>{title}</h4>
-        <p>{message}</p>
+        <h4 dangerouslySetInnerHTML={{ __html: title }} />
+        <p dangerouslySetInnerHTML={{ __html: message }} />
         <div className="toolbar-actions">
           <button type="button" className="btn btn-default" onClick={onDismiss}>
             Cancel

@@ -6,7 +6,51 @@
   "user-table": {
     "first-name": "Ime",
     "last-name": "Prezime",
-    "sub-start": "Pocetak pretplate",
-    "sub-end": "Kraj pretplate"
+    "note": "Beleška",
+    "actions": "Akcije",
+    "sub-start": "Početak pretplate",
+    "sub-end": "Kraj pretplate",
+    "insert-new-user": "Dodaj korisnika",
+    "filters": "Filteri",
+    "search": "Pretraga",
+    "subscription": "Pretplata",
+    "id": "ID",
+    "status": "Status"
+  },
+  "subscription-models": {
+    "name": "Naziv",
+    "value": "Vrednost",
+    "modifier": "Modifikator",
+    "actions": "Akcije",
+    "insert-new-model": "Dodaj novi model",
+    "select": {
+      "days": "Dana",
+      "months": "Meseci",
+      "years": "Godina"
+    }
+  },
+  "links": {
+    "title": "Navigacija",
+    "home": "Početna",
+    "users": "Korisnici",
+    "subscription-models": "Modeli pretplate",
+    "about": "Informacije",
+    "language": "Jezik"
+  },
+  "commons": {
+    "save": "Snimi",
+    "cancel": "Poništi",
+    "email": "E-pošta",
+    "tel": "Telefon",
+    "address": "Adresa",
+    "day": "Dan",
+    "month": "Mesec",
+    "year": "Godina"
+  },
+  "messages": {
+    "extend-subscription": "Produži <strong>{{fname}} {{lname}}</strong> pretplatu od: <strong>{{dateFrom}}</strong> do: <strong>{{dateTo}}</strong>",
+    "remove-user": "Da li ste sigurni da želite da obrišete <strong>{{fname}} {{lname}}</strong> iz baze?",
+    "remove-model": "Da li ste sigurni da želite da obrišete <strong>{{name}}</strong> model iz baze?",
+    "title": "Pažnja!"
   }
 }

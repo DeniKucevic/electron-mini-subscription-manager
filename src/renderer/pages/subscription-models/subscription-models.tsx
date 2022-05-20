@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BclModal } from 'renderer/components/bcl-modal';
 import { useConfirmationDialog } from 'renderer/context/confirmation-dialog';
 import useModal from 'renderer/hooks/useModal';
@@ -14,6 +15,7 @@ type SubscriptionModelType = {
 };
 
 export const SubscriptionModel: React.FC = () => {
+  const { t } = useTranslation();
   const { getConfirmation } = useConfirmationDialog();
 
   const [models, setModels] = useState<SubscriptionModelType[]>([]);
@@ -75,8 +77,10 @@ export const SubscriptionModel: React.FC = () => {
   ) => {
     e.stopPropagation();
     const confirmed = await getConfirmation({
-      title: 'Attention!',
-      message: `Are you sure you want to remove ${name} model from database?`,
+      title: t('common:messages.title'),
+      message: t('common:messages.remove-model', {
+        name,
+      }),
     });
 
     if (confirmed) {
@@ -84,13 +88,21 @@ export const SubscriptionModel: React.FC = () => {
     }
   };
 
+  const getTranslatedModifier = (modifier: string) => {
+    switch (modifier) {
+      case 'day':
+        return t('common:commons.day' as any);
+      case 'month':
+        return t('common:commons.month' as any);
+      case 'year':
+        return t('common:commons.year' as any);
+
+      default:
+        return 'unknown';
+    }
+  };
+
   return (
-    // <div>
-    //   here should be a different models for subscription (1 month, 10 days,
-    //   ...etc) and user should be able to make new ones, delete unwanted ones,
-    //   alter maybe?, also this should fill the select when creating user or
-    //   adding subscription
-    // </div>
     <div>
       <Header>
         <div className="toolbar-actions">
@@ -103,7 +115,7 @@ export const SubscriptionModel: React.FC = () => {
             disabled={models.length >= 6}
           >
             <span className="icon icon-plus-circled icon-text" />
-            Insert new model
+            {t('common:subscription-models.insert-new-model')}
           </button>
         </div>
       </Header>
@@ -111,10 +123,16 @@ export const SubscriptionModel: React.FC = () => {
         <thead>
           <tr>
             <th onClick={() => handleSort('id')}>id</th>
-            <th onClick={() => handleSort('name')}>Name</th>
-            <th onClick={() => handleSort('value')}>Value</th>
-            <th onClick={() => handleSort('modifier')}>Modifier</th>
-            <th>Action</th>
+            <th onClick={() => handleSort('name')}>
+              {t('common:subscription-models.name')}
+            </th>
+            <th onClick={() => handleSort('value')}>
+              {t('common:subscription-models.value')}
+            </th>
+            <th onClick={() => handleSort('modifier')}>
+              {t('common:subscription-models.modifier')}
+            </th>
+            <th>{t('common:subscription-models.actions')}</th>
           </tr>
         </thead>
         <tbody>
@@ -124,7 +142,7 @@ export const SubscriptionModel: React.FC = () => {
                 <td>{model.id}</td>
                 <td>{model.name}</td>
                 <td>{model.value}</td>
-                <td>{model.modifier}</td>
+                <td>{getTranslatedModifier(model.modifier)}</td>
                 <td style={{ textAlign: 'center' }}>
                   <div className="btn-group">
                     <button
@@ -146,10 +164,10 @@ export const SubscriptionModel: React.FC = () => {
         <form onSubmit={(e) => handleNewModel(e)}>
           <div>
             <div className="form-group">
-              <label>Name</label>
+              <label>{t('common:subscription-models.name')}:</label>
               <input
                 type="text"
-                placeholder="Name"
+                placeholder={t('common:subscription-models.name')}
                 className="form-control"
                 autoFocus
                 required
@@ -157,25 +175,31 @@ export const SubscriptionModel: React.FC = () => {
               />
             </div>
             <div className="form-group">
-              <label>Value</label>
+              <label>{t('common:subscription-models.value')}:</label>
               <input
                 type="number"
-                placeholder="Value"
+                placeholder={t('common:subscription-models.value')}
                 className="form-control"
                 onChange={(e) => setModelValue(e.target.value)}
                 required
               />
             </div>
             <div className="form-group">
-              Subscription:
+              {t('common:subscription-models.modifier')}:
               <select
                 className="form-control"
                 defaultValue="day"
                 onChange={(e) => setModelModifier(e.target.value)}
               >
-                <option value="day">day</option>
-                <option value="month">month</option>
-                <option value="year">year</option>
+                <option value="day">
+                  {t('common:subscription-models.select.days')}
+                </option>
+                <option value="month">
+                  {t('common:subscription-models.select.months')}
+                </option>
+                <option value="year">
+                  {t('common:subscription-models.select.years')}
+                </option>
               </select>
             </div>
           </div>
@@ -188,10 +212,10 @@ export const SubscriptionModel: React.FC = () => {
               className="btn btn-form btn-default"
               onClick={toggle}
             >
-              Cancel
+              {t('common:commons.cancel')}
             </button>
             <button type="submit" className="btn btn-form btn-primary">
-              OK
+              {t('common:commons.save')}
             </button>
           </div>
         </form>

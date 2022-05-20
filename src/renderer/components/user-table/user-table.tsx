@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { addMonths, differenceInDays, format, isAfter } from 'date-fns';
-import { srLatn } from 'date-fns/locale';
+import { srLatn, sr, enUS } from 'date-fns/locale';
 import { useConfirmationDialog } from 'renderer/context/confirmation-dialog';
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 type User = {
   id: number;
@@ -28,7 +30,22 @@ export const UserTable: React.FC<UserTableProps> = ({
   users,
 }) => {
   const today = new Date();
+  const { t } = useTranslation();
   const { getConfirmation } = useConfirmationDialog();
+
+  const getLocale = () => {
+    const selected = i18next.language;
+    switch (selected) {
+      case 'en':
+        return enUS;
+      case 'sr':
+        return srLatn;
+      case 'cp':
+        return sr;
+      default:
+        return enUS;
+    }
+  };
 
   const handleAddMonth = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -49,11 +66,17 @@ export const UserTable: React.FC<UserTableProps> = ({
     }
 
     const confirmed = await getConfirmation({
-      title: 'Attention!',
-      message: `Extend ${fname} ${lname} subscription from: ${format(
-        Date.parse(newSubStart),
-        'dd. MMMM yyyy.'
-      )} to: ${format(Date.parse(newSubEnd), 'dd. MMMM yyyy.')}`,
+      title: t('common:messages.title'),
+      message: t('common:messages.extend-subscription', {
+        fname,
+        lname,
+        dateFrom: format(Date.parse(newSubStart), 'dd. MMMM yyyy.', {
+          locale: getLocale(),
+        }),
+        dateTo: format(Date.parse(newSubEnd), 'dd. MMMM yyyy.', {
+          locale: getLocale(),
+        }),
+      }),
     });
 
     if (confirmed) {
@@ -82,8 +105,11 @@ export const UserTable: React.FC<UserTableProps> = ({
   ) => {
     e.stopPropagation();
     const confirmed = await getConfirmation({
-      title: 'Attention!',
-      message: `Are you sure you want to remove ${fname} ${lname} from database?`,
+      title: t('common:messages.title'),
+      message: t('common:messages.remove-user', {
+        fname,
+        lname,
+      }),
     });
 
     if (confirmed) {
@@ -95,18 +121,25 @@ export const UserTable: React.FC<UserTableProps> = ({
     <table className="table-striped">
       <thead>
         <tr>
-          <th onClick={() => handleSort('id')}>id</th>
-          <th onClick={() => handleSort('fname')}>First name</th>
-          <th onClick={() => handleSort('lname')}>Last name</th>
-          <th onClick={() => handleSort('note')}>note</th>
+          <th onClick={() => handleSort('id')}>{t('common:user-table.id')}</th>
+          <th onClick={() => handleSort('fname')}>
+            {t('common:user-table.first-name')}
+          </th>
+          <th onClick={() => handleSort('lname')}>
+            {t('common:user-table.last-name')}
+          </th>
+          <th onClick={() => handleSort('lname')}>{t('common:commons.tel')}</th>
+          <th onClick={() => handleSort('note')}>
+            {t('common:user-table.note')}
+          </th>
           <th onClick={() => handleSort('subscription_start')}>
-            Subscription start
+            {t('common:user-table.sub-start')}
           </th>
           <th onClick={() => handleSort('subscription_end')}>
-            Subscription end
+            {t('common:user-table.sub-end')}
           </th>
-          <th>Status</th>
-          <th>Actions</th>
+          <th>{t('common:user-table.status')}</th>
+          <th>{t('common:user-table.actions')}</th>
         </tr>
       </thead>
       <tbody>
@@ -118,6 +151,7 @@ export const UserTable: React.FC<UserTableProps> = ({
                 <td>{user.id}</td>
                 <td>{user.fname}</td>
                 <td>{user.lname}</td>
+                <td>{user.phone}</td>
                 <td style={{ color: user.note === 'null' ? 'lightgray' : '' }}>
                   {user.note}
                 </td>
@@ -126,14 +160,14 @@ export const UserTable: React.FC<UserTableProps> = ({
                     Date.parse(user.subscription_start),
                     'dd. MMMM yyyy.',
                     {
-                      locale: srLatn,
+                      locale: getLocale(),
                     }
                   )}
                 </td>
                 <td>
                   {' '}
                   {format(Date.parse(user.subscription_end), 'dd. MMMM yyyy.', {
-                    locale: srLatn,
+                    locale: getLocale(),
                   })}
                 </td>
                 <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>

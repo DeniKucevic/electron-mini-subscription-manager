@@ -1,6 +1,7 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Layout
+import { toast, ToastContainer } from 'react-toastify';
 import { DefaultLayout } from './layouts/default-layout';
 
 // Pages
@@ -8,9 +9,9 @@ import { Home } from './pages/home';
 import { About } from './pages/about';
 import { Users } from './pages/users';
 import { SubscriptionModel } from './pages/subscription-models';
+import { ConfirmationDialogProvider } from './context/confirmation-dialog';
 
 import './styles/photon.min.css';
-import { ConfirmationDialogProvider } from './context/confirmation-dialog';
 
 export const App = () => {
   return (

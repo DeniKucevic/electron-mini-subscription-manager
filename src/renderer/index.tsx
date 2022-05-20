@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import i18next from 'i18next';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
 import common_sr from '../translations/sr/common.json';
 import common_en from '../translations/en/common.json';
+import common_ср from '../translations/sr-cir/common.json';
 
 import { App } from './App';
 
@@ -13,17 +14,24 @@ export type TranslateFunction = (
   params?: { [key: string]: string | number }
 ) => string;
 
-i18next.init({
-  interpolation: { escapeValue: false }, // React already does escaping
-  lng: 'en', // language to use
-  resources: {
-    en: {
-      common: common_en, // 'common' is our custom namespace
-    },
-    sr: {
-      common: common_sr,
-    },
+export const defaultNS = 'ns1';
+export const resources = {
+  en: {
+    common: common_en,
   },
+  sr: {
+    common: common_sr,
+  },
+  cp: {
+    common: common_ср,
+  },
+} as const;
+
+i18next.use(initReactI18next).init({
+  lng: window.localStorage.getItem('lang') || 'en',
+  ns: ['ns1'],
+  defaultNS,
+  resources,
 });
 
 const container = document.getElementById('root')!;
@@ -33,10 +41,3 @@ root.render(
     <App />
   </I18nextProvider>
 );
-
-// calling IPC exposed from preload script
-window.electron.ipcRenderer.once('ipc-test', (arg) => {
-  // eslint-disable-next-line no-console
-  console.log(arg);
-});
-window.electron.ipcRenderer.myPing();

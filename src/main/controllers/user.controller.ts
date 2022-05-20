@@ -4,14 +4,22 @@ import { db } from '../../db/db.config';
 ipcMain.on('get-all-users', async (event) => {
   const sql = 'SELECT * FROM users';
   db.all(sql, (err, rows) => {
-    event.reply('users', (err && err.message) || rows);
+    if (err) {
+      event.reply('error', err);
+      return;
+    }
+    event.reply('users', rows);
   });
 });
 
 ipcMain.on('search-users', async (event, arg: string) => {
   const sql = `SELECT * FROM users WHERE fname LIKE "%${arg}%" OR lname LIKE "%${arg}%"`;
   db.all(sql, (err, rows) => {
-    event.reply('users', (err && err.message) || rows);
+    if (err) {
+      event.reply('error', err);
+      return;
+    }
+    event.reply('users', rows);
   });
 });
 
@@ -24,7 +32,11 @@ ipcMain.on(
     const { search, sort, sortDirection } = arg;
     const sql = `SELECT * FROM users WHERE fname LIKE "%${search}%" OR lname LIKE "%${search}%" ORDER BY "${sort}" ${sortDirection}`;
     db.all(sql, (err, rows) => {
-      event.reply('users', (err && err.message) || rows);
+      if (err) {
+        event.reply('error', err);
+        return;
+      }
+      event.reply('users', rows);
     });
   }
 );
@@ -68,9 +80,13 @@ ipcMain.on(
     WHERE
     id = ${id}`;
     db.all(sql, (err) => {
-      if (err) event.reply('error', err && err.message);
+      if (err) event.reply('error', err);
       db.all('SELECT * FROM users', (err2, rows) => {
-        event.reply('users', (err2 && err2.message) || rows);
+        if (err) {
+          event.reply('error', err2);
+          return;
+        }
+        event.reply('users', rows);
       });
     });
   }
@@ -80,9 +96,13 @@ ipcMain.on('delete-user', async (event, arg: { id: number }) => {
   const { id } = arg;
   const sql = `DELETE FROM users WHERE id = ${id}`;
   db.all(sql, (err) => {
-    if (err) event.reply('error', err && err.message);
+    if (err) event.reply('error', err);
     db.all('SELECT * FROM users', (err2, rows) => {
-      event.reply('users', (err2 && err2.message) || rows);
+      if (err) {
+        event.reply('error', err2);
+        return;
+      }
+      event.reply('users', rows);
     });
   });
 });
@@ -114,9 +134,13 @@ ipcMain.on(
     } = arg;
     const sql = `INSERT INTO users (fname, lname, email, address, phone, note, subscription_start, subscription_end) VALUES ("${firstName}", "${lastName}", "${email}", "${address}", "${phone}", "${note}", "${subscriptionStart}", "${subscriptionEnd}")`;
     db.all(sql, (err) => {
-      if (err) event.reply('error', err && err.message);
+      if (err) event.reply('error', err);
       db.all('SELECT * FROM users', (err2, rows) => {
-        event.reply('users', (err2 && err2.message) || rows);
+        if (err) {
+          event.reply('error', err2);
+          return;
+        }
+        event.reply('users', rows);
       });
     });
   }
@@ -139,9 +163,13 @@ ipcMain.on(
     WHERE
     id = ${id}`;
     db.all(sql, (err) => {
-      if (err) event.reply('error', err && err.message);
+      if (err) event.reply('error', err);
       db.all('SELECT * FROM users', (err2, rows) => {
-        event.reply('users', (err2 && err2.message) || rows);
+        if (err) {
+          event.reply('error', err2);
+          return;
+        }
+        event.reply('users', rows);
       });
     });
   }

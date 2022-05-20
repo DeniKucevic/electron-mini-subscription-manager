@@ -6,7 +6,51 @@
   "user-table": {
     "first-name": "First name",
     "last-name": "Last name",
+    "note": "Note",
+    "actions": "Actions",
     "sub-start": "Subscription start",
-    "sub-end": "Subscription end"
+    "sub-end": "Subscription end",
+    "insert-new-user": "Insert new user",
+    "filters": "Filters",
+    "search": "Search",
+    "subscription": "Subscription",
+    "id": "ID",
+    "status": "Status"
+  },
+  "subscription-models": {
+    "name": "Name",
+    "value": "Value",
+    "modifier": "Modifier",
+    "actions": "Actions",
+    "insert-new-model": "Insert new model",
+    "select": {
+      "days": "Days",
+      "months": "Months",
+      "years": "Years"
+    }
+  },
+  "links": {
+    "title": "Navigation",
+    "home": "Home",
+    "users": "Users",
+    "subscription-models": "Subscription models",
+    "about": "About",
+    "language": "Language"
+  },
+  "commons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "email": "Email",
+    "tel": "Phone",
+    "address": "Address",
+    "day": "Day",
+    "month": "Month",
+    "year": "Year"
+  },
+  "messages": {
+    "extend-subscription": "Extend <strong>{{fname}} {{lname}}</strong> subscription from: <strong>{{dateFrom}}</strong> to: <strong>{{dateTo}}</strong>",
+    "remove-user": "Are you sure you want to remove <strong>{{fname}} {{lname}}</strong> from database?",
+    "remove-model": "Are you sure you want to remove <strong>{{name}}</strong> model from database?",
+    "title": "Attention!"
   }
 }

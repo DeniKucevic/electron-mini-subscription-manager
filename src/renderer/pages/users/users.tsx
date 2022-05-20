@@ -9,6 +9,7 @@ import { EditUserModal } from 'renderer/components/edit-user-modal/edit-user-mod
 
 import { UserTable } from 'renderer/components/user-table';
 import './users.css';
+import { useTranslation } from 'react-i18next';
 
 type User = {
   id: number;
@@ -23,6 +24,7 @@ type User = {
 };
 
 export const Users: React.FC = () => {
+  const { t } = useTranslation();
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState('');
   const [lastSortDirection, setLastSortDirection] = useState<'ASC' | 'DESC'>(
@@ -95,13 +97,13 @@ export const Users: React.FC = () => {
         <div className="toolbar-actions">
           <input
             type="text"
-            placeholder="Search"
+            placeholder={t('common:user-table.search')}
             onChange={(e) => handleSearch(e)}
           />
 
           <button type="button" className="btn btn-default">
             <span className="icon icon-search icon-text" />
-            Filters
+            {t('common:user-table.filters')}
           </button>
 
           <button
@@ -112,7 +114,7 @@ export const Users: React.FC = () => {
             }}
           >
             <span className="icon icon-user-add icon-text" />
-            Insert new user
+            {t('common:user-table.insert-new-user')}
           </button>
         </div>
       </Header>

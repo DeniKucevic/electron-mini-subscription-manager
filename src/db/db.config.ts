@@ -1,10 +1,8 @@
 import sqlite from 'sqlite3';
-import path from 'path';
 
-const DB_PATH = path.join(__dirname, './db.sqlite3');
 const sqlite3 = sqlite.verbose();
 export const db = new sqlite3.Database(
-  DB_PATH,
+  './db/db.sqlite3',
   // eslint-disable-next-line no-bitwise
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
   (err) => {

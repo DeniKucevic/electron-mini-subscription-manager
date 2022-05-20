@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'react-chartjs-2';
 import { differenceInDays, format, isAfter } from 'date-fns';
-import { srLatn } from 'date-fns/locale';
+import { enUS, sr, srLatn } from 'date-fns/locale';
 
 import 'chart.js/auto';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 type User = {
   id: number;
@@ -51,6 +52,20 @@ export const Home: React.FC = () => {
     ],
   };
 
+  const getLocale = () => {
+    const selected = i18next.language;
+    switch (selected) {
+      case 'en':
+        return enUS;
+      case 'sr':
+        return srLatn;
+      case 'cp':
+        return sr;
+      default:
+        return enUS;
+    }
+  };
+
   const handleSubscriptionStatus = (subscriptionEnd: string) => {
     if (isAfter(today, Date.parse(subscriptionEnd)))
       return <span className="icon icon-db-shape" style={{ color: 'red' }} />;
@@ -85,12 +100,12 @@ export const Home: React.FC = () => {
         <table className="table-striped">
           <thead>
             <tr>
-              <th>id</th>
+              <th>{t('user-table.id')}</th>
               <th>{t('user-table.first-name')}</th>
               <th>{t('user-table.last-name')}</th>
               <th>{t('user-table.sub-start')}</th>
               <th>{t('user-table.sub-end')}</th>
-              <th>Status</th>
+              <th>{t('user-table.status')}</th>
             </tr>
           </thead>
           <tbody>
@@ -107,7 +122,7 @@ export const Home: React.FC = () => {
                         Date.parse(user.subscription_start),
                         'dd. MMMM yyyy.',
                         {
-                          locale: srLatn,
+                          locale: getLocale(),
                         }
                       )}
                     </td>
@@ -117,7 +132,7 @@ export const Home: React.FC = () => {
                         Date.parse(user.subscription_end),
                         'dd. MMMM yyyy.',
                         {
-                          locale: srLatn,
+                          locale: getLocale(),
                         }
                       )}
                     </td>
