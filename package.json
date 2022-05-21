@@ -264,9 +264,10 @@
   },
   "electronmon": {
     "patterns": [
-      "db",
-      "db/**",
-      "db/db.sqlite3",
+      "!db",
+      "!db/**/*",
+      "!db/!*.sqlite3",
+      "!db/db.sqlite3",
       "!src/db",
       "!src/db/**/*",
       "!*.sqlite3"
