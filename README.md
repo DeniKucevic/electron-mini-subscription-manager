@@ -8,7 +8,7 @@
 
 **Software Version: 1.0.0**
 
-**Technical Information: Built with**[**electron-react-boilerplate**](https://electron-react-boilerplate.js.org/)
+**Technical Information: Built with** [**electron-react-boilerplate**](https://electron-react-boilerplate.js.org/)
 
 ## Contents
 
