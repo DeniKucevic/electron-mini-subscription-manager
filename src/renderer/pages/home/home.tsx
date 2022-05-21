@@ -1,67 +1,152 @@
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'react-chartjs-2';
+import { differenceInDays, format, isAfter } from 'date-fns';
+import { enUS, sr, srLatn } from 'date-fns/locale';
 
 import 'chart.js/auto';
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+
+type User = {
+  id: number;
+  fname: string;
+  lname: string;
+  email: string;
+  address: string;
+  phone: string;
+  note: string;
+  subscription_start: string;
+  subscription_end: string;
+};
 
 export const Home: React.FC = () => {
-  const [count, setCount] = useState<any>([]);
+  const today = new Date();
+
+  const { t } = useTranslation('common');
+
+  const [count, setCount] = useState<any[]>([]);
+  const [usersToExpire, setUsersToExpire] = useState<any[]>([]);
+
+  window.electron.ipcRenderer.once('home', (arg) => {
+    const { chart, toExpire } = arg as {
+      chart: any[];
+      toExpire: any[];
+    };
+    setCount(chart);
+    setUsersToExpire(toExpire);
+  });
 
   useEffect(() => {
-    const today = new Date();
-    window.electron.ipcRenderer.once('DB-request', (arg) => {
-      setCount(arg as any);
-    });
-    window.electron.ipcRenderer.messageDB(
-      `SELECT id, COUNT(*) AS total,
-      SUM(CASE WHEN subscription_end < "${today.toISOString()}" THEN 1 ELSE 0 END) expired_count,
-      SUM(CASE WHEN subscription_end > "${today.toISOString()}" THEN 1 ELSE 0 END) valid_count
-      FROM users`
-    );
-    //     SELECT ProductID,
-    //     COUNT(*) AS Total,
-    //     SUM(CASE WHEN pStatus = 'delivered' THEN 1 ELSE 0 END) DeliveredCount,
-    //     SUM(CASE WHEN pStatus = 'idle' THEN 1 ELSE 0 END) IdleCount,
-    //     SUM(CASE WHEN pStatus = 'shipping' THEN 1 ELSE 0 END) ShippingCount,
-    //     SUM(CASE WHEN pStatus = 'preparing' THEN 1 ELSE 0 END) PreparingCount
-    // FROM ProductTable
-    // GROUP BY ProductID
+    window.electron.ipcRenderer.getHomeChart({ today: new Date() });
   }, []);
 
   const data = {
-    labels: ['Valid users', 'Expired users'],
+    labels: [t('home.valid-users'), t('home.expired-users')],
     datasets: [
       {
-        label: '# of Users',
         data: [count[0]?.valid_count, count[0]?.expired_count],
-        backgroundColor: [
-          'green',
-          'orange',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-        ],
-        borderColor: [
-          'green',
-          'orange',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
+        backgroundColor: ['green', 'red'],
+        borderColor: ['green', 'red'],
         borderWidth: 1,
       },
     ],
   };
 
+  const getLocale = () => {
+    const selected = i18next.language;
+    switch (selected) {
+      case 'en':
+        return enUS;
+      case 'sr':
+        return srLatn;
+      case 'cp':
+        return sr;
+      default:
+        return enUS;
+    }
+  };
+
+  const handleSubscriptionStatus = (subscriptionEnd: string) => {
+    if (isAfter(today, Date.parse(subscriptionEnd)))
+      return <span className="icon icon-db-shape" style={{ color: 'red' }} />;
+    if (differenceInDays(Date.parse(subscriptionEnd), today) >= 3)
+      return <span className="icon icon-db-shape" style={{ color: 'green' }} />;
+
+    return <span className="icon icon-db-shape" style={{ color: 'orange' }} />;
+  };
+
   return (
-    <div style={{ width: '30rem' }}>
-      {/* some statistics should be here, like how many total users, how many active
-      users, and users who subscription is about to expire
-      <button type="button" onClick={() => console.log(count)}>
-        COUNT
-      </button> */}
-      <Chart type="pie" data={data} />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <div
+        style={{
+          padding: '1rem',
+          margin: '3rem',
+          flexGrow: '1',
+        }}
+      >
+        <Chart type="pie" data={data} />
+      </div>
+      <div
+        style={{
+          flexGrow: '2',
+        }}
+      >
+        <table className="table-striped">
+          <thead>
+            <tr>
+              <th>{t('user-table.id')}</th>
+              <th>{t('user-table.first-name')}</th>
+              <th>{t('user-table.last-name')}</th>
+              <th>{t('user-table.sub-start')}</th>
+              <th>{t('user-table.sub-end')}</th>
+              <th>{t('user-table.status')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usersToExpire &&
+              usersToExpire.length > 0 &&
+              usersToExpire.map((user: User) => {
+                return (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.fname}</td>
+                    <td>{user.lname}</td>
+                    <td>
+                      {format(
+                        Date.parse(user.subscription_start),
+                        'dd. MMMM yyyy.',
+                        {
+                          locale: getLocale(),
+                        }
+                      )}
+                    </td>
+                    <td>
+                      {' '}
+                      {format(
+                        Date.parse(user.subscription_end),
+                        'dd. MMMM yyyy.',
+                        {
+                          locale: getLocale(),
+                        }
+                      )}
+                    </td>
+                    <td
+                      style={{ textAlign: 'center', verticalAlign: 'middle' }}
+                    >
+                      {handleSubscriptionStatus(user.subscription_end)}
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import sqlite from 'sqlite3';
+import { db } from '../db/db.config';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -24,20 +24,6 @@ export default class AppUpdater {
   }
 }
 
-const sqlite3 = sqlite.verbose();
-const db = new sqlite3.Database('./db/db.sqlite3', (err) => {
-  if (err) console.error('Database opening error: ', err);
-});
-
-db.serialize(() => {
-  db.run(
-    'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, fname TEXT NOT NULL, lname TEXT NOT NULL, email TEXT, address TEXT, phone TEXT, note TEXT, subscription_start TEXT NOT NULL, subscription_end TEXT NOT NULL)'
-  );
-  db.run(
-    'CREATE TABLE IF NOT EXISTS subscription_models ("id" INTEGER PRIMARY KEY, "name" TEXT NOT NULL UNIQUE, "value" TEXT NOT NULL, "modifier" TEXT NOT NULL)'
-  );
-});
-
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
@@ -46,18 +32,9 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
-ipcMain.on('DB-request', async (event, arg) => {
-  console.log('DB-request: ', arg);
-  const sql = arg;
-  db.all(sql, (err, rows) => {
-    event.reply('DB-request', (err && err.message) || rows);
-  });
-});
-
-ipcMain.on('focus-fix', () => {
-  mainWindow?.blur();
-  mainWindow?.focus();
-});
+require('./controllers/home.controller');
+require('./controllers/user.controller');
+require('./controllers/subscription.controller');
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

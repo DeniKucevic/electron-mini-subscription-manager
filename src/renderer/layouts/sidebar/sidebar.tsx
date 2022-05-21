@@ -1,27 +1,57 @@
+import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { BclNavLink } from 'renderer/components/bcl-nav-link';
 
+const lngs = {
+  en: { nativeName: 'English' },
+  sr: { nativeName: 'Srpski - lat' },
+  cp: { nativeName: 'Српски - ћир' },
+};
+
 export const Sidebar = () => {
+  const { t } = useTranslation();
+  const handleLanguageSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    window.localStorage.setItem('lang', e.target.value);
+    i18next.changeLanguage(e.target.value);
+  };
   return (
     <div className="pane-sm sidebar">
       <nav className="nav-group">
-        <h5 className="nav-group-title">Hyper Links</h5>
+        <h5 className="nav-group-title">{t('common:links.title')}</h5>
         <BclNavLink to="/">
           <span className="icon icon-home" />
-          Home
+          {t('common:links.home')}
         </BclNavLink>
         <BclNavLink to="/users">
           <span className="icon icon-users" />
-          Users
+          {t('common:links.users')}
         </BclNavLink>
         <BclNavLink to="/subscription-model">
           <span className="icon icon-archive" />
-          Subscription models
+          {t('common:links.subscription-models')}
         </BclNavLink>
         <BclNavLink to="/about">
           <span className="icon icon-info-circled" />
-          About
+          {t('common:links.about')}
         </BclNavLink>
       </nav>
+      <div className="form-group" style={{ margin: '21px' }}>
+        {t('common:links.language')}:
+        <select
+          className="form-control"
+          onChange={(e) => handleLanguageSelect(e)}
+        >
+          {Object.keys(lngs).map((lng) => (
+            <option
+              key={lng}
+              value={lng}
+              selected={lng === i18next.language && true}
+            >
+              {lngs[lng as keyof typeof lngs].nativeName}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

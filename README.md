@@ -1,153 +1,180 @@
-<img src=".erb/img/erb-banner.svg" width="100%" />
+![image.png](media_Macaw/titleimg.png)
 
-<br>
+---
 
-<p>
-  Electron React Boilerplate uses <a href="https://electron.atom.io/">Electron</a>, <a href="https://facebook.github.io/react/">React</a>, <a href="https://github.com/reactjs/react-router">React Router</a>, <a href="https://webpack.js.org/">Webpack</a> and <a href="https://www.npmjs.com/package/react-refresh">React Fast Refresh</a>.
-</p>
+# Macaw
 
-<br>
+**Software Name: Macaw - minimal subscription-manager**
 
-<div align="center">
+**Software Version: 1.0.0**
 
-[![Build Status][github-actions-status]][github-actions-url]
-[![Github Tag][github-tag-image]][github-tag-url]
-[![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/Fjy3vfgy5q)
+**Technical Information: Built with**[**electron-react-boilerplate**](https://electron-react-boilerplate.js.org/)
 
-[![OpenCollective](https://opencollective.com/electron-react-boilerplate-594/backers/badge.svg)](#backers)
-[![OpenCollective](https://opencollective.com/electron-react-boilerplate-594/sponsors/badge.svg)](#sponsors)
-[![StackOverflow][stackoverflow-img]][stackoverflow-url]
+## Contents
 
-</div>
+- [Macaw](#macaw)
+  - [Contents](#contents)
+  - [**How-To Guide**🔍](#how-to-guide)
+  - [**Tutorials**🙋🏼‍♂️](#tutorials️)
+    - [**Layout of the app**:](#layout-of-the-app)
+    - [**Navigation**:](#navigation)
+    - [**Home page**:](#home-page)
+    - [**Users page:**](#users-page)
+    - [**Subscription models**:](#subscription-models)
+    - [**Error message**](#error-message)
+  - [**Customer Support**💭](#customer-support)
+  - [**Additional Comments**🔔](#additional-comments)
+  - [**Contributors:**](#contributors)
 
-## Install
+**Software Summary**🧠
 
-Clone the repo and install dependencies:
+This software is intended for keeping subscription records. The focus of the macaw is to solve the problem of record-keeping for a small business that does not need a complete solution but a simple record-keeping app. Completely open-source and free.
+
+## **How-To Guide**🔍
+
+To run the app locally download the repo, install the dependencies:
 
 ```bash
-git clone --depth 1 --branch main https://github.com/electron-react-boilerplate/electron-react-boilerplate.git your-project-name
-cd your-project-name
 npm install
 ```
 
-**Having issues installing? See our [debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400)**
-
-## Starting Development
-
-Start the app in the `dev` environment:
+for development:
 
 ```bash
-npm start
+npm run start
 ```
 
-## Packaging for Production
-
-To package apps for the local platform:
+If you want to package the app (build the installer ".exe"):
 
 ```bash
-npm run package
+npm run build
 ```
 
-## Docs
+This will output the installer to the release folder.
 
-See our [docs and guides here](https://electron-react-boilerplate.js.org/docs/installation)
+---
 
-## Community
+## **Tutorials**🙋🏼‍♂️
 
-Join our Discord: https://discord.gg/Fjy3vfgy5q
+### **Layout of the app**:
 
-## Donations
+![Screenshot 2022-05-20 230001.png](media_Macaw/Screenshot%202022-05-20%20230001.png)
 
-**Donations will ensure the following:**
+On the left is navigation with links to pages, and the content will be on the right.
 
-- 🔨 Long term maintenance of the project
-- 🛣 Progress on the [roadmap](https://electron-react-boilerplate.js.org/docs/roadmap)
-- 🐛 Quick responses to bug reports and help requests
+### **Navigation**:
 
-## Backers
+![image.png](media_Macaw/image.png)
 
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/electron-react-boilerplate-594#backer)]
+Here you can navigate between pages and select the language of the app.
 
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/0/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/0/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/1/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/1/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/2/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/2/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/3/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/3/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/4/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/4/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/5/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/5/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/6/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/6/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/7/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/7/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/8/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/8/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/9/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/9/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/10/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/10/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/11/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/11/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/12/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/12/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/13/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/13/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/14/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/14/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/15/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/15/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/16/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/16/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/17/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/17/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/18/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/18/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/19/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/19/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/20/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/20/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/21/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/21/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/22/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/22/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/23/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/23/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/24/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/24/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/25/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/25/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/26/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/26/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/27/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/27/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/28/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/28/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/backer/29/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/backer/29/avatar.svg"></a>
+### **Home page**:
 
-## Sponsors
+![image.png](media_Macaw/f4f51835-c12e-4b8b-8c67-d6e5e2074eaa_image.png)
 
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/electron-react-boilerplate-594-594#sponsor)]
+The pie chart will show the ratio of expired and active subscriptions. The bottom table is showing subscriptions that are 3 days or less to expire sorted by most recent to expire. If there is no data this page will be blank.
 
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/0/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/1/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/2/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/3/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/4/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/5/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/6/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/7/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/8/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/9/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/9/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/10/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/10/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/11/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/11/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/12/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/12/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/13/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/13/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/14/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/14/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/15/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/15/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/16/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/16/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/17/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/17/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/18/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/18/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/19/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/19/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/20/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/20/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/21/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/21/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/22/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/22/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/23/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/23/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/24/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/24/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/25/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/25/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/26/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/26/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/27/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/27/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/28/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/28/avatar.svg"></a>
-<a href="https://opencollective.com/electron-react-boilerplate-594/sponsor/29/website" target="_blank"><img src="https://opencollective.com/electron-react-boilerplate-594/sponsor/29/avatar.svg"></a>
+---
 
-## Maintainers
+### **Users page:**
 
-- [Amila Welihinda](https://github.com/amilajack)
-- [John Tran](https://github.com/jooohhn)
-- [C. T. Lin](https://github.com/chentsulin)
-- [Jhen-Jie Hong](https://github.com/jhen0409)
+![image.png](media_Macaw/4ed49ae4-d988-414a-a39c-ae3ad0a1b2eb_image.png)
 
-## License
+This is a table of all users.
 
-MIT © [Electron React Boilerplate](https://github.com/electron-react-boilerplate)
+The table can be sorted in ascending or descending order by clicking on the header items.
 
-[github-actions-status]: https://github.com/electron-react-boilerplate/electron-react-boilerplate/workflows/Test/badge.svg
-[github-actions-url]: https://github.com/electron-react-boilerplate/electron-react-boilerplate/actions
-[github-tag-image]: https://img.shields.io/github/tag/electron-react-boilerplate/electron-react-boilerplate.svg?label=version
-[github-tag-url]: https://github.com/electron-react-boilerplate/electron-react-boilerplate/releases/latest
-[stackoverflow-img]: https://img.shields.io/badge/stackoverflow-electron_react_boilerplate-blue.svg
-[stackoverflow-url]: https://stackoverflow.com/questions/tagged/electron-react-boilerplate
+In the top left corner is a search input that allows the table to be searched with a name or last name.
+
+The table shows basic information and the status of the subscription:
+
+- RED: expired;
+- YELLOW: 3 or fewer days until expiring;
+- GREEN: active
+
+On the right are quick actions:
+
+- PLUS: If there are subscription models it will add the first one in the list, if there are none subscription models it will add a one month from the date the subscription is set to expire;
+- TRASH CAN: This will delete a user PERMANENTLY with all data. This action will trigger a confirm dialog:
+
+![image.png](media_Macaw/8310c46e-ca86-485d-81d6-a12059b713a1_image.png)
+
+In the top right corder is "add new user" button wich will open a modal to fill out the data of the new user:
+
+![image.png](media_Macaw/a6943b85-54d1-4245-af60-cf0704728062_image.png)
+
+First name and last name fields are only ones that are required. Note is a general field that can be used to insert and text or number.
+
+"Subscription" select will get data from subscription models page and fill in the dropdown:
+
+![image.png](media_Macaw/e3b010c5-0309-441f-af91-bd0001e38435_image.png)
+
+This drop down will only apply first time. Idea is to create a standard one that will be added by default when plus in the actions column of the users table is pressed and add models here for give aways or coupons or grace periods. If t he user wants some other subscription the used view can be used.
+
+Clicking on the user will open a more detailed modal with the option to edit fields and insert custom subscriptions:
+
+![image.png](media_Macaw/0e48088b-cbc7-47d2-a6ec-ed2b6d38fb71_image.png)
+
+### **Subscription models**:
+
+![image.png](media_Macaw/3e181094-337c-4f39-a5a5-75b0dd27226b_image.png)
+
+This is a table of all subscription models.
+
+The table can be sorted in ascending or descending order by clicking on the header items.
+
+The table shows information about subscription models.
+
+On the right are quick actions:
+
+- TRASH CAN: This will delete a user PERMANENTLY with all data. This action will trigger a confirm dialog:
+
+Subscription model consists of name (should be as descriptive as possible), value wich is a number that is tied to modifier that can be day, month, or year.
+
+New models are created by clicking the "Insert new model" button in the top right:
+
+![image.png](media_Macaw/033fdc93-35c1-4493-91b8-5bdf63fabde6_image.png)
+
+To create a new subscription that will last a week for example first we would insert new name:
+
+- "Week sub" (name can not be duplicate and will throw a error if you try to insert a subscription with same name)
+- Then we would select a value - 7 (value is a number that can not be less then 1).
+- After that select modifier - days
+
+That will give us a subscription named "Week sub" that will last for 7 days (a week).
+
+!! **IMPORTANT:**
+!! maximum amount of subscription models to add is 6. After that the button to add new one will not be functional. This is made to prevent making too much of the models.
+
+---
+
+### **Error message**
+
+![image.png](media_Macaw/ddb09b11-9fdb-402c-99dd-f22e08275c7e_image.png)
+
+If you see this message something went wrong. If you have trouble figuring it out this would be a SQL error shown so try searching on the internet. If you still have trouble you can try emailing me: [denikucevic@gmail.com](mailto:denikucevic@gmail.com).
+
+## **Customer Support**💭
+
+If you have trouble with software, question, want some feature built in for you, something changed or want to support me you can contact me on **email**: [denikucevic@gmail.com](mailto:denikucevic@gmail.com)
+
+or try on linkedin: [denikucevic](https://www.linkedin.com/in/denis-kucevic/)
+
+If you are looking for the **souce code** you can find in on my github: [DeniKucevic](https://github.com/DeniKucevic/electron-mini-subscription-manager)
+
+## **Additional Comments**🔔
+
+This app is created for my friend to help him manage his gym. I tried to best of my skills to make it as simple as possible for use and general enough for different use cases.
+
+If you want to improve on this feel free to create a pull request and I will add you to the contributors on the github and here.
+
+## **Contributors:**
+
+**Jón Agnar Stefánsson (JonnXor):**
+
+- Helped keeping me sane, structuring the project and solving bugs. My work colleague and a friend of mine. Very skilled Computer scientist / programmer.
+- 📍 Iceland
+- 🌐 <https://jonnxor.is>
+- [JonnXor@gmail.com](mailto:JonnXor@gmail.com)
+
+---

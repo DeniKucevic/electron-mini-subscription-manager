@@ -1,6 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { DateRange } from 'react-date-range';
+import i18next from 'i18next';
+import { enUS, sr, srLatn } from 'date-fns/locale';
 import { BclModal } from '../bcl-modal';
 
 import 'react-date-range/dist/styles.css';
@@ -33,6 +37,21 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
   selectedUser,
   setSelectedUser,
 }) => {
+  const { t } = useTranslation();
+
+  const getLocale = () => {
+    const selected = i18next.language;
+    switch (selected) {
+      case 'en':
+        return enUS;
+      case 'sr':
+        return srLatn;
+      case 'cp':
+        return sr;
+      default:
+        return enUS;
+    }
+  };
   return (
     <BclModal isShowing={isShowingUser} hide={toggleUser}>
       {Object.keys(selectedUser).length === 0 ? (
@@ -42,7 +61,7 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
           <div className="popup_user_form">
             <div>
               <div className="form-group">
-                <label>First name</label>
+                <label>{t('common:user-table.first-name')}</label>
                 <input
                   type="text"
                   className="form-control"
@@ -57,7 +76,7 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
                 />
               </div>
               <div className="form-group">
-                <label>Last name</label>
+                <label>{t('common:user-table.last-name')}</label>
                 <input
                   className="form-control"
                   defaultValue={selectedUser.lname}
@@ -71,7 +90,7 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
                 />
               </div>
               <div className="form-group">
-                <label>Email</label>
+                <label>{t('common:commons.email')}</label>
                 <input
                   className="form-control"
                   defaultValue={selectedUser.email}
@@ -84,7 +103,20 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
                 />
               </div>
               <div className="form-group">
-                <label>Address</label>
+                <label>{t('common:commons.tel')}</label>
+                <input
+                  className="form-control"
+                  defaultValue={selectedUser.phone}
+                  onChange={(e) =>
+                    setSelectedUser((prevState) => ({
+                      ...prevState,
+                      phone: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+              <div className="form-group">
+                <label>{t('common:commons.address')}</label>
                 <input
                   className="form-control"
                   defaultValue={selectedUser.address}
@@ -97,7 +129,7 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
                 />
               </div>
               <div className="form-group">
-                <label>Note</label>
+                <label>{t('common:user-table.note')}</label>
                 <textarea
                   className="form-control"
                   rows={3}
@@ -113,6 +145,7 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
             </div>
             <div>
               <DateRange
+                locale={getLocale()}
                 onChange={(item) => {
                   setSelectedUser((prevState) => ({
                     ...prevState,
@@ -144,10 +177,10 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({
               className="btn btn-form btn-default"
               onClick={toggleUser}
             >
-              Cancel
+              {t('common:commons.cancel')}
             </button>
             <button type="submit" className="btn btn-form btn-primary">
-              OK
+              {t('common:commons.save')}
             </button>
           </div>
         </form>
