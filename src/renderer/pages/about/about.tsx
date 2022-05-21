@@ -14,6 +14,7 @@ import userModal from '../../../../assets/images/user-modal.png';
 import userPage from '../../../../assets/images/users-table.png';
 import modelsTable from '../../../../assets/images/models-table.png';
 import titleImg from '../../../../assets/images/titleimg.png';
+import subDelete from '../../../../assets/images/sub-delete.png';
 
 import './about.css';
 
@@ -184,6 +185,7 @@ export const About: React.FC = () => {
         <ul>
           <li>{t('common:about.subscription-models-p5')}</li>
         </ul>
+        <img src={subDelete} alt="" />
         <p>{t('common:about.subscription-models-p6')} </p>
         <p>{t('common:about.subscription-models-p7')}</p>
         <p>

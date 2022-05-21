@@ -127,7 +127,9 @@ The table shows information about subscription models.
 
 On the right are quick actions:
 
-- TRASH CAN: This will delete a user PERMANENTLY with all data. This action will trigger a confirm dialog:
+- TRASH CAN: This will delete a model PERMANENTLY with all data. This action will trigger a confirm dialog:
+
+![image.png](media_Macaw/Screenshot 2022-05-21 043933.png)
 
 Subscription model consists of name (should be as descriptive as possible), value wich is a number that is tied to modifier that can be day, month, or year.
 
