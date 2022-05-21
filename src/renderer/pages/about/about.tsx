@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // IMAGES
 import addUserModal from '../../../../assets/images/add-user-modal.png';
@@ -12,274 +13,257 @@ import subscriptionDropdown from '../../../../assets/images/subscription-dropdow
 import userModal from '../../../../assets/images/user-modal.png';
 import userPage from '../../../../assets/images/users-table.png';
 import modelsTable from '../../../../assets/images/models-table.png';
+import titleImg from '../../../../assets/images/titleimg.png';
 
 import './about.css';
 
 export const About: React.FC = () => {
+  const { t } = useTranslation();
   return (
-    <div className="about-container">
-      <h1 id="macaw">Macaw</h1>
-      <p>
-        <strong>Software Name: Macaw - minimal subscription-manager</strong>
-      </p>
-      <p>
-        <strong>Software Version: 1.0.0</strong>
-      </p>
-      <p>
-        **Technical Information: Built with **
-        <a href="https://electron-react-boilerplate.js.org/">
-          <strong>electron-react-boilerplate</strong>
-        </a>
-      </p>
-      <p>**Software Summary **🧠</p>
-      <p>
-        This software is intended for keeping subscription records. The focus of
-        the macaw is to solve the problem of record-keeping for a small business
-        that does not need a complete solution but a simple record-keeping app.
-        Wholly open-source and free.
-      </p>
-      <p>**How-To Guide **🔍</p>
-      <p>To run the app locally download the repo, install the dependencies:</p>
-      <pre>
-        <code className="language-bash">
-          <div>npm install</div>
-        </code>
-      </pre>
-      <p>for development:</p>
-      <pre>
-        <code className="language-bash">
-          <div>npm run start</div>
-        </code>
-      </pre>
-      <p>
-        If you want to package the app (build the installer &quot;.exe&quot;):
-      </p>
-      <pre>
-        <code className="language-bash">
-          <div>npm run build</div>
-        </code>
-      </pre>
-      <p>This will output the installer to the release folder.</p>
-      <hr />
-      <p>**Tutorials **🙋🏼‍♂️</p>
-      <h3 id="layout-of-the-app">
-        <strong>Layout of the app</strong>:
-      </h3>
-      <p>
-        <img src={layout} alt="Screenshot 2022-05-20 230001.png" />
-      </p>
-      <p>
-        On the left is navigation with links to pages, and the content will be
-        on the right.
-      </p>
-      <h3 id="navigation">
-        <strong>Navigation</strong>:
-      </h3>
-      <p>
-        <img src={navigation} alt="" />
-      </p>
-      <p>
-        Here you can navigate between pages and select the language of the app.
-      </p>
-      <h3 id="home-page">
-        <strong>Home page</strong>:
-      </h3>
-      <p>
-        <img src={homePage} alt="" />
-      </p>
-      <p>
-        The pie chart will show the ratio of expired and active subscriptions.
-        The bottom table is showing subscriptions that are 3 days or less to
-        expire sorted by most recent to expire. If there is no data this page
-        will be blank.
-      </p>
-      <hr />
-      <h3 id="users-page">
-        <strong>Users page:</strong>
-      </h3>
-      <p>
-        <img src={userPage} alt="" />
-      </p>
-      <p>This is a table of all users.</p>
-      <p>
-        The table can be sorted in ascending or descending order by clicking on
-        the header items.
-      </p>
-      <p>
-        In the top left corner is a search input that allows the table to be
-        searched with a name or last name.
-      </p>
-      <p>
-        The table shows basic information and the status of the subscription:
-      </p>
-      <ul>
-        <li>RED: expired;</li>
-        <li>YELLOW: 3 or fewer days until expiring;</li>
-        <li>GREEN: active</li>
-      </ul>
-      <p>On the right are quick actions:</p>
-      <ul>
-        <li>
-          PLUS: If there are subscription models it will add the first one in
-          the list, if there are none subscription models it will add a one
-          month from the date the subscription is set to expire;
-        </li>
-        <li>
-          TRASH CAN: This will delete a user PERMANENTLY with all data. This
-          action will trigger a confirm dialog:
-        </li>
-      </ul>
-      <p>
-        <img src={dialog} alt="" />
-      </p>
-      <p>
-        In the top right corder is &quot;add new user&quot; button wich will
-        open a modal to fill out the data of the new user:
-      </p>
-      <p>
-        <img src={addUserModal} alt="" />
-      </p>
-      <p>
-        First name and last name fields are only ones that are required. Note is
-        a general field that can be used to insert and text or number.
-      </p>
-      <p>
-        &quot;Subscription&quot; select will get data from subscription models
-        page and fill in the dropdown:
-      </p>
-      <p>
-        <img src={subscriptionDropdown} alt="" />
-      </p>
-      <p>
-        This drop down will only apply first time. Idea is to create a standard
-        one that will be added by default when plus in the actions column of the
-        users table is pressed and add models here for give aways or coupons or
-        grace periods. If t he user wants some other subscription the used view
-        can be used.
-      </p>
-      <p>
-        Clicking on the user will open a more detailed modal with the option to
-        edit fields and insert custom subscriptions:
-      </p>
-      <p>
-        <img src={userModal} alt="User modal" />
-      </p>
-      <h3 id="subscription-models">
-        <strong>Subscription models</strong>:
-      </h3>
-      <p>
-        <img src={modelsTable} alt="Subscription models" />
-      </p>
-      <p>This is a table of all subscription models.</p>
-      <p>
-        The table can be sorted in ascending or descending order by clicking on
-        the header items.
-      </p>
-      <p>The table shows information about subscription models.</p>
-      <p>On the right are quick actions:</p>
-      <ul>
-        <li>
-          TRASH CAN: This will delete a user PERMANENTLY with all data. This
-          action will trigger a confirm dialog:
-        </li>
-      </ul>
-      <p>
-        Subscription model consists of name (should be as descriptive as
-        possible), value wich is a number that is tied to modifier that can be
-        day, month, or year.
-      </p>
-      <p>
-        New models are created by clicking the &quot;Insert new model&quot;
-        button in the top right:
-      </p>
-      <p>
-        <img src={modelsModal} alt="subscription model modal" />
-      </p>
-      <p>
-        To create a new subscription that will last a week for example first we
-        would insert new name:
-      </p>
-      <ul>
-        <li>
-          &quot;Week sub&quot; (name can not be duplicate and will throw a error
-          if you try to insert a subscription with same name)
-        </li>
-        <li>
-          Then we would select a value - 7 (value is a number that can not be
-          less then 1).
-        </li>
-        <li>After that select modifier - days</li>
-      </ul>
-      <p>
-        That will give us a subscription named &quot;Week sub&quot; that will
-        last for 7 days (a week).
-      </p>
-      <p>
-        !! <strong>IMPORTANT:</strong> !! maximum amount of subscription models
-        to add is 6. After that the button to add new one will not be
-        functional. This is made to prevent making too much of the models.
-      </p>
-      <hr />
-      <ul>
-        <li>**Error message: **</li>
-      </ul>
-      <p>
-        <img src={error} alt="error message" />
-      </p>
-      <p>
-        If you see this message something went wrong. If you have trouble
-        figuring it out this would be a SQL error shown so try searching on the
-        internet. If you still have trouble you can try emailing me:
-        <a href="mailto:denikucevic@gmail.com">denikucevic@gmail.com</a>.
-      </p>
-      <p>**Customer Support **💭</p>
-      <p>
-        If you have trouble with software, question, want some feature built in
-        for you, something changed or want to support me you can contact me on
-        <strong>email</strong>:
-        <a href="mailto:denikucevic@gmail.com">denikucevic@gmail.com</a>
-      </p>
-      <p>
-        or try on linkedin:
-        <a href="https://www.linkedin.com/in/denis-kucevic/">denikucevic</a>
-      </p>
-      <p>
-        If you are looking for the **souce code **you can find in on my github:
-        <a href="https://github.com/DeniKucevic/electron-mini-subscription-manager">
-          DeniKucevic
-        </a>
-      </p>
-      <p>**Additional Comments **🔔</p>
-      <p>
-        This app is created for my friend to help him manage his gym. I tried to
-        best of my skills to make it as simple as possible for use and general
-        enough for different use cases.
-      </p>
-      <p>
-        If you want to improve on this feel free to create a pull request and I
-        will add you to the contributors on the github and here.
-      </p>
-      <p>
-        <strong>Contributors:</strong>
-      </p>
-      <p>
-        <strong>Jón Agnar Stefánsson (JonnXor):</strong>
-      </p>
-      <ul>
-        <li>
-          Helped keeping me sane, structuring the project and solving bugs. My
-          work colleague and a friend of mine. Very skilled Computer scientist /
-          programmer.
-        </li>
-        <li>📍 Iceland</li>
-        <li>
-          🌐 <a href="https://jonnxor.is">https://jonnxor.is</a>
-        </li>
-        <li>
-          <a href="mailto:JonnXor@gmail.com">JonnXor@gmail.com</a>
-        </li>
-      </ul>
-      <hr />
+    <div>
+      <img src={titleImg} alt="" />
+      <div className="content-container">
+        <hr />
+        <h1 id="macaw">Macaw</h1>
+        <p>
+          <strong>{t('common:about.title-p1')}</strong>
+        </p>
+        <p>
+          <strong>{t('common:about.title-p2')}: 1.0.0</strong>
+        </p>
+        <p>
+          <strong>{t('common:about.title-p3')}</strong>
+          <a
+            href="https://electron-react-boilerplate.js.org/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <strong>electron-react-boilerplate</strong>
+          </a>
+        </p>
+        <h2 id="contents">{t('common:about.contents')}</h2>
+        <ul>
+          <li>
+            <a href="#macaw">Macaw</a>
+            <ul>
+              <li>
+                <a href="#contents">{t('common:about.contents')}</a>
+              </li>
+              <li>
+                <a href="#tutorials">
+                  <strong>{t('common:about.tutorials')}</strong>🙋🏼‍♂️
+                </a>
+                <ul>
+                  <li>
+                    <a href="#layout-of-the-app">
+                      <strong>{t('common:about.layout-of-the-app')}</strong>:
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#navigation">
+                      <strong>{t('common:about.navigation')}</strong>:
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#home-page">
+                      <strong>{t('common:about.home-page')}</strong>:
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#users-page">
+                      <strong>{t('common:about.users-page')}</strong>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#subscription-models">
+                      <strong>{t('common:about.subscription-models')}</strong>:
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#error-message">
+                      <strong>{t('common:about.error-message')}</strong>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#customer-support">
+                  <strong>{t('common:about.customer-support')}</strong>💭
+                </a>
+              </li>
+              <li>
+                <a href="#additional-comments">
+                  <strong>{t('common:about.additional-comments')}</strong>🔔
+                </a>
+              </li>
+              <li>
+                <a href="#contributors">
+                  <strong>{t('common:about.contributors')}:</strong>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <strong>{t('common:about.software-summary')}</strong>🧠
+        </p>
+        <p>{t('common:about.software-summary-p1')}</p>
+        <hr />
+        <h2 id="tutorials">
+          <strong>{t('common:about.tutorials')}</strong>🙋🏼‍♂️
+        </h2>
+        <h3 id="layout-of-the-app">
+          <strong>{t('common:about.layout-of-the-app')}</strong>:
+        </h3>
+        <p>
+          <img src={layout} alt="" />
+        </p>
+        <p>{t('common:about.layout-of-the-app-p1')}</p>
+        <h3 id="navigation">
+          <strong>{t('common:about.navigation')}</strong>:
+        </h3>
+        <p>
+          <img src={navigation} alt="" />
+        </p>
+        <p>{t('common:about.navigation-p1')}</p>
+        <h3 id="home-page">
+          <strong>{t('common:about.home-page')}</strong>:
+        </h3>
+        <p>
+          <img src={homePage} alt="" />
+        </p>
+        <p>{t('common:about.home-page-p1')}</p>
+        <hr />
+        <h3 id="users-page">
+          <strong>{t('common:about.users-page')}</strong>
+        </h3>
+        <p>
+          <img src={userPage} alt="" />
+        </p>
+        <p>{t('common:about.users-page-p1')}</p>
+        <p>{t('common:about.users-page-p2')}</p>
+        <p>{t('common:about.users-page-p3')}</p>
+        <p>{t('common:about.users-page-p4')} </p>
+        <ul>
+          <li>{t('common:about.users-page-p5')}</li>
+          <li>{t('common:about.users-page-p6')}</li>
+          <li>{t('common:about.users-page-p7')}</li>
+        </ul>
+        <p>{t('common:about.users-page-p8')}</p>
+        <ul>
+          <li>{t('common:about.users-page-p9')}</li>
+          <li>{t('common:about.users-page-p10')}</li>
+        </ul>
+        <p>
+          <img src={dialog} alt="" />
+        </p>
+        <p>{t('common:about.users-page-p11')}</p>
+        <p>
+          <img src={addUserModal} alt="" />
+        </p>
+        <p>{t('common:about.users-page-p12')} </p>
+        <p>{t('common:about.users-page-p13')}</p>
+        <p>
+          <img src={subscriptionDropdown} alt="" />
+        </p>
+        <p>{t('common:about.users-page-p14')}</p>
+        <p>{t('common:about.users-page-p15')}</p>
+        <p>
+          <img src={userModal} alt="" />
+        </p>
+        <h3 id="subscription-models">
+          <strong>{t('common:about.subscription-models')}</strong>:
+        </h3>
+        <p>
+          <img src={modelsTable} alt="" />
+        </p>
+        <p>{t('common:about.subscription-models-p1')}</p>
+        <p>{t('common:about.subscription-models-p2')}</p>
+        <p>{t('common:about.subscription-models-p3')}</p>
+        <p>{t('common:about.subscription-models-p4')}</p>
+        <ul>
+          <li>{t('common:about.subscription-models-p5')}</li>
+        </ul>
+        <p>{t('common:about.subscription-models-p6')} </p>
+        <p>{t('common:about.subscription-models-p7')}</p>
+        <p>
+          <img src={modelsModal} alt="" />
+        </p>
+        <p>{t('common:about.subscription-models-p8')}</p>
+        <ul>
+          <li>{t('common:about.subscription-models-p9')}</li>
+          <li>{t('common:about.subscription-models-p10')}</li>
+          <li>{t('common:about.subscription-models-p11')}</li>
+        </ul>
+        <p>{t('common:about.subscription-models-p12')}</p>
+        <p>
+          !! <strong>{t('common:about.important')}</strong>
+          !! {t('common:about.important-p1')}
+        </p>
+        <hr />
+        <h3 id="error-message">
+          <strong>{t('common:about.error-message')}</strong>
+        </h3>
+        <p>
+          <img src={error} alt="" />
+        </p>
+        <p>
+          {t('common:about.error-message-p1')}{' '}
+          <a href="mailto:denikucevic@gmail.com">denikucevic@gmail.com</a>.
+        </p>
+        <h2 id="customer-support">
+          <strong>{t('common:about.customer-support')}</strong>💭
+        </h2>
+        <p>
+          {t('common:about.customer-support-p1')}{' '}
+          <a href="mailto:denikucevic@gmail.com">denikucevic@gmail.com</a>
+        </p>
+        <p>
+          {t('common:about.customer-support-p2')}{' '}
+          <a
+            href="https://www.linkedin.com/in/denis-kucevic/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            denikucevic
+          </a>
+        </p>
+        <p>
+          {t('common:about.customer-support-p3')}{' '}
+          <a
+            href="https://github.com/DeniKucevic/electron-mini-subscription-manager"
+            target="_blank"
+            rel="noreferrer"
+          >
+            DeniKucevic
+          </a>
+        </p>
+        <h2 id="additional-comments">
+          <strong>{t('common:about.additional-comments')}</strong>🔔
+        </h2>
+        <p>{t('common:about.additional-comments-p1')}</p>
+        <p>{t('common:about.additional-comments-p2')}</p>
+        <h2 id="contributors">
+          <strong>{t('common:about.contributors')}</strong>
+        </h2>
+        <p>
+          <strong>Jón Agnar Stefánsson (JonnXor):</strong>
+        </p>
+        <ul>
+          <li>{t('common:about.about-contributor-jon')}</li>
+          <li>📍 {t('common:about.iceland')}</li>
+          <li>
+            🌐{' '}
+            <a href="https://jonnxor.is" target="_blank" rel="noreferrer">
+              https://jonnxor.is
+            </a>
+          </li>
+          <li>
+            <a href="mailto:JonnXor@gmail.com">JonnXor@gmail.com</a>
+          </li>
+        </ul>
+        <hr />
+      </div>
     </div>
   );
 };

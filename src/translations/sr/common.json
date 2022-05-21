@@ -52,5 +52,83 @@
     "remove-user": "Da li ste sigurni da želite da obrišete <strong>{{fname}} {{lname}}</strong> iz baze?",
     "remove-model": "Da li ste sigurni da želite da obrišete <strong>{{name}}</strong> model iz baze?",
     "title": "Pažnja!"
+  },
+  "about": {
+    "title": "Macaw",
+    "title-p1": "Ime softvera: Macaw - minimal subscription-manager",
+    "title-p2": "Verzija softvera",
+    "title-p3": "Tehničke informacije: Izgrađeno sa ",
+
+    "contents": "Sadržaj",
+
+    "software-summary": "Rezime softvera",
+    "software-summary-p1": "Ovaj softver je namenjen za potrebe održavanja evidencija o pretplatama. Macaw-ov focus je da reši problem evidencije za male biznise koji nemaju potrebu za kompletnim rešenjem već za jednostavnom aplikacijom za evidencije pretplata. Kompletno 'open-source' i besplatno.",
+
+    "tutorials": "Uputstva",
+
+    "layout-of-the-app": "Izgled aplikacije",
+    "layout-of-the-app-p1": "Na levoj strani je navigacija sa linkovima do stranica, a sadržaj će biti na desnoj strani.",
+
+    "navigation": "Navigacija",
+    "navigation-p1": "Ovde možete da se krećete između stranica i birate jezik aplikacije.",
+
+    "home-page": "Početna stranica",
+    "home-page-p1": "Kružni grafikon će pokazati odnos isteklih i aktivnih pretplata. Donja tabela prikazuje pretplate kojima je potrebno 3 dana ili manje do isteka, sortirane prema najskorijim koje ističu. Ako nema podataka, ova stranica će biti prazna.",
+
+    "users-page": "Stranica korisnika:",
+    "users-page-p1": "Ovo je tabela svih korisnika.",
+    "users-page-p2": "Tabela se može sortirati u rastućem ili opadajućem redosledu klikom na stavke zaglavlja.",
+    "users-page-p3": "U gornjem levom uglu nalazi se unos za pretragu koji omogućava pretragu tabele sa imenom ili prezimenom.",
+    "users-page-p4": "Tabela prikazuje osnovne informacije i status pretplate:",
+    "users-page-p5": "CRVENO: isteklo;",
+    "users-page-p6": "ŽUTO: 3 ili manje dana do istekač",
+    "users-page-p7": "GREEN: aktrivno",
+    "users-page-p8": "Sa desne strane su brze radnje:",
+    "users-page-p9": "PLUS: Ako postoje modeli pretplate, on će dodati prvi na listu, ako ne postoji nijedan model pretplate, dodati će mesec dana od datuma kada je pretplata podešena da istekne;",
+    "users-page-p10": "KANTICA: Ovo će TRAJNO izbrisati korisnika sa svim podacima. Ova radnja će pokrenuti dijalog za potvrdu:",
+    "users-page-p11": "U gornjem desnom uglu je dugme 'dodaj novog korisnika' koje će otvoriti modal za popunjavanje podataka novog korisnika:",
+    "users-page-p12": "Polja za ime i prezime su samo ona koja su obavezna. Beleška je opšte polje koje se može koristiti za umetanje teksta ili broja.",
+    "users-page-p13": "Izbor 'Pretplate' će dobiti podatke sa stranice modela pretplate i popuniti padajući meni:",
+    "users-page-p14": "Ovaj padajući meni će se primeniti samo prvi put. Ideja je da se napravi standardni koji će se podrazumevano dodati kada se pritisne plus u koloni radnji u tabeli korisnika i dodati modele ovde za uvek davanje ili kupone ili grejs periode. Ako korisnik želi neku drugu pretplatu, može se koristiti korišćeni prikaz.",
+    "users-page-p15": "Klikom na korisnika otvoriće se detaljniji modal sa opcijom za uređivanje polja i umetanje prilagođenih pretplata:",
+
+    "subscription-models": "Modeli pretplate",
+    "subscription-models-p1": "Ovo je tabela svih modela pretplate.",
+    "subscription-models-p2": "Tabela se može sortirati u rastućem ili opadajućem redosledu klikom na stavke zaglavlja.",
+    "subscription-models-p3": "Tabela prikazuje informacije o modelima pretplate.",
+    "subscription-models-p4": "S desne strane su brze radnje:",
+    "subscription-models-p5": "KANTICA: Ovo će TRAJNO izbrisati korisnika sa svim podacima. Ova radnja će pokrenuti dijalog za potvrdu:",
+    "subscription-models-p6": "Model pretplate se sastoji od imena (treba da bude što je moguće opisnije), vrednosti koja je broj koji je vezan za modifikator koji može biti dan, mesec ili godina.",
+    "subscription-models-p7": "Novi modeli se kreiraju klikom na dugme 'Ubaci novi model' u gornjem desnom uglu:",
+    "subscription-models-p8": "Da bismo napravili novu pretplatu koja će trajati nedelju dana, na primer, prvo bismo ubacili novo ime:",
+    "subscription-models-p9": "'Nedeljni sub' (ime ne može da se duplira i daće grešku ako pokušate da ubacite pretplatu sa istim imenom)",
+    "subscription-models-p10": "Tada bismo izabrali vrednost - 7 (vrednost je broj koji ne može biti manji od 1).",
+    "subscription-models-p11": "Nakon toga izaberite modifikator - dani",
+    "subscription-models-p12": "To će nam dati pretplatu pod nazivom 'Nedeljni sub' koja će trajati 7 dana (nedelju dana).",
+
+    "important": "VAŽNO",
+    "important-p1": "maksimalni broj modela pretplate za dodavanje je 6. Nakon toga dugme za dodavanje novog neće biti funkcionalno. Ovo je napravljeno da spreči stvaranje previše modela.",
+
+    "error-message": "Poruka o grešci",
+
+    "error-message-p1": "Ako vidite ovu poruku, nešto je pošlo naopako. Ako imate problema da to shvatite, ovo bi bila prikazana SKL greška, pa pokušajte da pretražujete na internetu. Ako i dalje imate problema, možete pokušati da mi pošaljete e-poštu: ",
+
+    "customer-support": "Korisnička podrška",
+
+    "customer-support-p1": "Ako imate problema sa softverom, pitanjem, želite neku funkciju ugrađenu za vas, nešto promenjeno ili želite da me podržite, možete me kontaktirati putem e-pošte:",
+
+    "customer-support-p2": "ili isprobajte linkedin: ",
+
+    "customer-support-p3": "Ako tražite izvorni kod koji možete pronaći na mom github-u: ",
+
+    "additional-comments": "Dodatni komentari",
+
+    "additional-comments-p1": "Ova aplikacija je kreirana za mog prijatelja da mu pomogne da upravlja svojom teretanom. Trudio sam se da bude što jednostavnije za upotrebu i dovoljno opšte za različite slučajeve upotrebe.",
+    "additional-comments-p2": "Ako želite da poboljšate ovo, slobodno kreirajte zahtev za povlačenje i dodaću vas među saradnike na github-u i ovde.",
+
+    "contributors": "Saradnici",
+
+    "about-contributor-jon": "Pomogao mi je da očuvam razum, strukturiram projekat i rešavam greške. Moj kolega sa posla i moj prijatelj. Veoma vešt informatičar / programer.",
+    "iceland": "Island"
   }
 }

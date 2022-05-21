@@ -28,7 +28,7 @@
 
 **Software Summary**🧠
 
-This software is intended for keeping subscription records. The focus of the macaw is to solve the problem of record-keeping for a small business that does not need a complete solution but a simple record-keeping app. Wholly open-source and free.
+This software is intended for keeping subscription records. The focus of the macaw is to solve the problem of record-keeping for a small business that does not need a complete solution but a simple record-keeping app. Completely open-source and free.
 
 ## **How-To Guide**🔍
 

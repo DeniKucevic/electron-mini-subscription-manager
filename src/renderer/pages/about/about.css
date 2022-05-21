@@ -1,8 +1,9 @@
 img {
-  /* max-width: 600px; */
+  max-width: 100%;
+  height: auto;
 }
 
-.about-container {
+.content-container {
   max-width: 800px;
-  margin: 7rem;
+  margin: 0 4rem;
 }

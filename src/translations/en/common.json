@@ -52,5 +52,83 @@
     "remove-user": "Are you sure you want to remove <strong>{{fname}} {{lname}}</strong> from database?",
     "remove-model": "Are you sure you want to remove <strong>{{name}}</strong> model from database?",
     "title": "Attention!"
+  },
+  "about": {
+    "title": "Macaw",
+    "title-p1": "Software Name: Macaw - minimal subscription-manager",
+    "title-p2": "Software Version",
+    "title-p3": "Technical Information: Built with",
+
+    "contents": "Contents",
+
+    "software-summary": "Software Summary",
+    "software-summary-p1": "This software is intended for keeping subscription records. The focus of the macaw is to solve the problem of record-keeping for a small business that does not need a complete solution but a simple record-keeping app. Completely open-source and free.",
+
+    "tutorials": "Tutorials",
+
+    "layout-of-the-app": "Layout of the app",
+    "layout-of-the-app-p1": "On the left is navigation with links to pages, and the content will be on the right.",
+
+    "navigation": "Navigation",
+    "navigation-p1": "Here you can navigate between pages and select the language of the app.",
+
+    "home-page": "Home page",
+    "home-page-p1": "The pie chart will show the ratio of expired and active subscriptions. The bottom table is showing subscriptions that are 3 days or less to expire sorted by most recent to expire. If there is no data this page will be blank.",
+
+    "users-page": "Users page:",
+    "users-page-p1": "This is a table of all users.",
+    "users-page-p2": "The table can be sorted in ascending or descending order by clicking on the header items.",
+    "users-page-p3": "In the top left corner is a search input that allows the table to be searched with a name or last name.",
+    "users-page-p4": "The table shows basic information and the status of the subscription::",
+    "users-page-p5": "RED: expired:",
+    "users-page-p6": "YELLOW: 3 or fewer days until expiring;",
+    "users-page-p7": "GREEN: active",
+    "users-page-p8": "On the right are quick actions:",
+    "users-page-p9": "PLUS: If there are subscription models it will add the first one in the list, if there are none subscription models it will add a one month from the date the subscription is set to expire;",
+    "users-page-p10": "TRASH CAN: This will delete a user PERMANENTLY with all data. This action will trigger a confirm dialog:",
+    "users-page-p11": "In the top right corder is 'add new user' button which will open a modal to fill out the data of the new user:",
+    "users-page-p12": "First name and last name fields are only ones that are required. Note is a general field that can be used to insert and text or number.",
+    "users-page-p13": "'Subscription' select will get data from subscription models page and fill in the dropdown:",
+    "users-page-p14": "This drop down will only apply first time. Idea is to create a standard one that will be added by default when plus in the actions column of the users table is pressed and add models here for give always or coupons or grace periods. If t he user wants some other subscription the used view can be used.",
+    "users-page-p15": "Clicking on the user will open a more detailed modal with the option to edit fields and insert custom subscriptions:",
+
+    "subscription-models": "Subscription models",
+    "subscription-models-p1": "This is a table of all subscription models.",
+    "subscription-models-p2": "The table can be sorted in ascending or descending order by clicking on the header items.",
+    "subscription-models-p3": "The table shows information about subscription models.",
+    "subscription-models-p4": "On the right are quick actions:",
+    "subscription-models-p5": "TRASH CAN: This will delete a user PERMANENTLY with all data. This action will trigger a confirm dialog:",
+    "subscription-models-p6": "Subscription model consists of name (should be as descriptive as possible), value which is a number that is tied to modifier that can be day, month, or year.",
+    "subscription-models-p7": "New models are created by clicking the 'Insert new model' button in the top right:",
+    "subscription-models-p8": "To create a new subscription that will last a week for example first we would insert new name:",
+    "subscription-models-p9": "'Week sub' (name can not be duplicate and will throw a error if you try to insert a subscription with same name)",
+    "subscription-models-p10": "Then we would select a value - 7 (value is a number that can not be less then 1).",
+    "subscription-models-p11": "After that select modifier - days",
+    "subscription-models-p12": "That will give us a subscription named 'Week sub' that will last for 7 days (a week).",
+
+    "important": "IMPORTANT",
+    "important-p1": "maximum amount of subscription models to add is 6. After that the button to add new one will not be functional. This is made to prevent making too much of the models.",
+
+    "error-message": "Error message",
+
+    "error-message-p1": "If you see this message something went wrong. If you have trouble figuring it out this would be a SQL error shown so try searching on the internet. If you still have trouble you can try emailing me: ",
+
+    "customer-support": "Customer Support",
+
+    "customer-support-p1": "If you have trouble with software, question, want some feature built in for you, something changed or want to support me you can contact me on email: ",
+
+    "customer-support-p2": "or try on linkedin: ",
+
+    "customer-support-p3": "If you are looking for the source code you can find in on my github: ",
+
+    "additional-comments": "Additional Comments",
+
+    "additional-comments-p1": "This app is created for my friend to help him manage his gym. I tried to best of my skills to make it as simple as possible for use and general enough for different use cases.",
+    "additional-comments-p2": "If you want to improve on this feel free to create a pull request and I will add you to the contributors on the github and here.",
+
+    "contributors": "Contributors",
+
+    "about-contributor-jon": "Helped keeping me sane, structuring the project and solving bugs. My work colleague and a friend of mine. Very skilled Computer scientist / programmer.",
+    "iceland": "Iceland"
   }
 }
