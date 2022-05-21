@@ -16,11 +16,11 @@
   - [Contents](#contents)
   - [**How-To Guide**🔍](#how-to-guide)
   - [**Tutorials**🙋🏼‍♂️](#tutorials️)
-    - [**Layout of the app**](#layout-of-the-app)
-    - [**Navigation**](#navigation)
-    - [**Home page**](#home-page)
-    - [**Users page**](#users-page)
-    - [**Subscription models**](#subscription-models)
+    - [**Layout of the app**:](#layout-of-the-app)
+    - [**Navigation**:](#navigation)
+    - [**Home page**:](#home-page)
+    - [**Users page:**](#users-page)
+    - [**Subscription models**:](#subscription-models)
     - [**Error message**](#error-message)
   - [**Customer Support**💭](#customer-support)
   - [**Additional Comments**🔔](#additional-comments)
@@ -129,7 +129,7 @@ On the right are quick actions:
 
 - TRASH CAN: This will delete a model PERMANENTLY with all data. This action will trigger a confirm dialog:
 
-![image.png](media_Macaw/Screenshot 2022-05-21 043933.png)
+![image.png](media_Macaw/screenshot-2022-05-21-043933.png)
 
 Subscription model consists of name (should be as descriptive as possible), value wich is a number that is tied to modifier that can be day, month, or year.
 
