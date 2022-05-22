@@ -90,6 +90,7 @@ export const Home: React.FC = () => {
           flexGrow: '1',
         }}
       >
+        pew pew
         <Chart type="pie" data={data} />
       </div>
       <div
