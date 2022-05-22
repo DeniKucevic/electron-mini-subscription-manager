@@ -41,3 +41,10 @@ root.render(
     <App />
   </I18nextProvider>
 );
+
+// calling IPC exposed from preload script
+window.electron.ipcRenderer.once('ipc-test', (arg: any) => {
+  // eslint-disable-next-line no-console
+  window.localStorage.setItem('version', arg);
+});
+window.electron.ipcRenderer.myPing();

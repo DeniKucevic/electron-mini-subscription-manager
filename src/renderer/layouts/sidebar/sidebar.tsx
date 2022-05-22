@@ -14,6 +14,7 @@ export const Sidebar = () => {
     window.localStorage.setItem('lang', e.target.value);
     i18next.changeLanguage(e.target.value);
   };
+
   return (
     <div className="pane-sm sidebar">
       <nav className="nav-group">
@@ -52,6 +53,15 @@ export const Sidebar = () => {
           ))}
         </select>
       </div>
+      <span className="nav-group-item">
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={() => window.electron.ipcRenderer.checkForUpdates()}
+        >
+          Check for updates
+        </button>
+      </span>
     </div>
   );
 };

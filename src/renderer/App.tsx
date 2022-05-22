@@ -1,7 +1,6 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Layout
-import { toast, ToastContainer } from 'react-toastify';
 import { DefaultLayout } from './layouts/default-layout';
 
 // Pages

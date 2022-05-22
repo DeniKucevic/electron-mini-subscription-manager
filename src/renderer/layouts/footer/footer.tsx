@@ -22,6 +22,9 @@ export const Footer = () => {
         >
           JonnXor!
         </a>
+        <span className="pull-right" style={{ marginRight: '6px' }}>
+          v{window.localStorage.getItem('version')}
+        </span>
       </BclTitle>
     </footer>
   );

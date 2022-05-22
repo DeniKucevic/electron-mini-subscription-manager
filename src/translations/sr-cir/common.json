@@ -26,7 +26,8 @@
     "select": {
       "days": "Дана",
       "months": "Месеци",
-      "years": "Година"
+      "years": "Година",
+      "check-update": "Провери ажурирања"
     }
   },
   "links": {

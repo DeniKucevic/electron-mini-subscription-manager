@@ -35,7 +35,8 @@
     "users": "Korisnici",
     "subscription-models": "Modeli pretplate",
     "about": "Informacije",
-    "language": "Jezik"
+    "language": "Jezik",
+    "check-update": "Proveri ažuriranja"
   },
   "commons": {
     "save": "Snimi",

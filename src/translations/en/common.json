@@ -35,7 +35,8 @@
     "users": "Users",
     "subscription-models": "Subscription models",
     "about": "About",
-    "language": "Language"
+    "language": "Language",
+    "check-update": "Check for updates"
   },
   "commons": {
     "save": "Save",
