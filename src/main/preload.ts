@@ -3,7 +3,10 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
     myPing() {
-      ipcRenderer.send('ipc-test', 'ping');
+      ipcRenderer.send('ipc-test');
+    },
+    checkForUpdates() {
+      ipcRenderer.send('updates-check');
     },
 
     // HOME
@@ -79,7 +82,14 @@ contextBridge.exposeInMainWorld('electron', {
     //
 
     on(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'home', 'users', 'models', 'error'];
+      const validChannels = [
+        'ipc-test',
+        'home',
+        'users',
+        'models',
+        'version',
+        'error',
+      ];
       if (validChannels.includes(channel)) {
         const subscription = (_event: IpcRendererEvent, ...args: unknown[]) =>
           func(...args);
@@ -93,7 +103,14 @@ contextBridge.exposeInMainWorld('electron', {
     },
 
     once(channel: string, func: (...args: unknown[]) => void) {
-      const validChannels = ['ipc-test', 'home', 'users', 'models', 'error'];
+      const validChannels = [
+        'ipc-test',
+        'home',
+        'users',
+        'models',
+        'version',
+        'error',
+      ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.once(channel, (_event, ...args) => func(...args));

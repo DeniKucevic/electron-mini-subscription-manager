@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { db } from '../db/db.config';
@@ -30,6 +30,10 @@ ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
+});
+
+ipcMain.on('updates-check', async () => {
+  autoUpdater.checkForUpdatesAndNotify();
 });
 
 require('./controllers/home.controller');
@@ -141,3 +145,55 @@ app
     });
   })
   .catch(console.log);
+
+autoUpdater.on('update-not-available', (_event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Ok'],
+    title: 'Macaw Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'You are running latest version',
+  };
+  if (mainWindow) {
+    dialog.showMessageBox(mainWindow, dialogOpts);
+  }
+});
+
+autoUpdater.on('update-available', (_event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Ok'],
+    title: 'Macaw Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail: 'A new version is being downloaded.',
+  };
+  if (mainWindow) {
+    dialog.showMessageBox(mainWindow, dialogOpts);
+  }
+});
+
+autoUpdater.on('error', (error) => {
+  dialog.showErrorBox(
+    'Error: ',
+    error == null ? 'unknown' : (error.stack || error).toString()
+  );
+});
+
+autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Restart', 'Later'],
+    title: 'Macaw Update',
+    message: process.platform === 'win32' ? releaseNotes : releaseName,
+    detail:
+      'A new version has been downloaded. Restart the application to apply the updates.',
+  };
+  dialog
+    .showMessageBox(dialogOpts)
+    .then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall();
+    })
+    .catch((err) => {
+      if (mainWindow) dialog.showErrorBox('error updating', err);
+    });
+});
