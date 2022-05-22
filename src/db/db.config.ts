@@ -2,7 +2,7 @@ import sqlite from 'sqlite3';
 
 const sqlite3 = sqlite.verbose();
 export const db = new sqlite3.Database(
-  './db/db.sqlite3',
+  './db.sqlite3',
   // eslint-disable-next-line no-bitwise
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
   (err) => {
