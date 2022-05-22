@@ -99,7 +99,7 @@ On the right are quick actions:
 
 ![image.png](media_Macaw/8310c46e-ca86-485d-81d6-a12059b713a1_image.png)
 
-In the top right corder is "add new user" button wich will open a modal to fill out the data of the new user:
+In the top right corder is "add new user" button which will open a modal to fill out the data of the new user:
 
 ![image.png](media_Macaw/a6943b85-54d1-4245-af60-cf0704728062_image.png)
 
@@ -109,7 +109,7 @@ First name and last name fields are only ones that are required. Note is a gener
 
 ![image.png](media_Macaw/e3b010c5-0309-441f-af91-bd0001e38435_image.png)
 
-This drop down will only apply first time. Idea is to create a standard one that will be added by default when plus in the actions column of the users table is pressed and add models here for give aways or coupons or grace periods. If t he user wants some other subscription the used view can be used.
+This drop down will only apply first time. Idea is to create a standard one that will be added by default when plus in the actions column of the users table is pressed and add models here for give always or coupons or grace periods. If t he user wants some other subscription the used view can be used.
 
 Clicking on the user will open a more detailed modal with the option to edit fields and insert custom subscriptions:
 
@@ -131,7 +131,7 @@ On the right are quick actions:
 
 ![image.png](media_Macaw/screenshot-2022-05-21-043933.png)
 
-Subscription model consists of name (should be as descriptive as possible), value wich is a number that is tied to modifier that can be day, month, or year.
+Subscription model consists of name (should be as descriptive as possible), value which is a number that is tied to modifier that can be day, month, or year.
 
 New models are created by clicking the "Insert new model" button in the top right:
 
