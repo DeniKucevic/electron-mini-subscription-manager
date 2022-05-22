@@ -93,8 +93,8 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "brixi",
-      "repo": "DeniKucevic/electron-mini-subscription-manager"
+      "owner": "DeniKucevic",
+      "repo": "electron-mini-subscription-manager"
     }
   },
   "repository": {
