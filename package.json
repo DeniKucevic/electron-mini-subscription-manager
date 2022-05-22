@@ -94,12 +94,12 @@
     "publish": {
       "provider": "github",
       "owner": "brixi",
-      "repo": "https://github.com/DeniKucevic/gym-manager"
+      "repo": "DeniKucevic/electron-mini-subscription-manager"
     }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DeniKucevic/gym-manager/"
+    "url": "git+https://github.com/DeniKucevic/electron-mini-subscription-manager/"
   },
   "author": {
     "name": "Brixi",
@@ -115,7 +115,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DeniKucevic/gym-manager/issues"
+    "url": "https://github.com/DeniKucevic/electron-mini-subscription-manager/issues"
   },
   "keywords": [
     "electron",
@@ -125,7 +125,7 @@
     "subscription",
     "macaw"
   ],
-  "homepage": "https://github.com/DeniKucevic/gym-manager",
+  "homepage": "https://github.com/DeniKucevic/electron-mini-subscription-manager",
   "jest": {
     "testURL": "http://localhost/",
     "testEnvironment": "jsdom",
