@@ -8,6 +8,7 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
+import 'v8-compile-cache';
 import path from 'path';
 import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
@@ -25,14 +26,109 @@ export default class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let lang: null | string = null;
 
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
+const getUpdateNotAvailableMessage = () => {
+  switch (lang) {
+    case 'en':
+      return {
+        title: 'Macaw Update',
+        message: 'You are running latest version 🥳',
+        buttons: ['Ok'],
+      };
+    case 'sr':
+      return {
+        title: 'Macaw Ažuriranje',
+        message: 'Pokrećete najnoviju verziju 🥳',
+        buttons: ['U redu'],
+      };
+    case 'cp':
+      return {
+        title: 'Macaw Aжурирање',
+        message: 'Покрећете најновију верзију 🥳',
+        buttons: ['У реду'],
+      };
+
+    default:
+      return {
+        title: 'Macaw Update',
+        message: 'You are running latest version 🥳',
+        buttons: ['Ok'],
+      };
+  }
+};
+
+const getUpdateAvailableMessage = () => {
+  switch (lang) {
+    case 'en':
+      return {
+        title: 'Macaw Update',
+        detail: 'A new version is being downloaded.',
+        buttons: ['Ok'],
+      };
+    case 'sr':
+      return {
+        title: 'Macaw Ažuriranje',
+        detail: 'Nova verzija se preuzima.',
+        buttons: ['U redu'],
+      };
+    case 'cp':
+      return {
+        title: 'Macaw Aжурирање',
+        detail: 'Нова верзија се преузима.',
+        buttons: ['У реду'],
+      };
+
+    default:
+      return {
+        title: 'Macaw Update',
+        detail: 'A new version is being downloaded.',
+        buttons: ['Ok'],
+      };
+  }
+};
+
+const getUpdateDownloaded = () => {
+  switch (lang) {
+    case 'en':
+      return {
+        title: 'Macaw Update',
+        detail:
+          'A new version has been downloaded. Restart the application to apply the updates.',
+        buttons: ['Restart', 'Later'],
+      };
+    case 'sr':
+      return {
+        title: 'Macaw Ažuriranje',
+        detail:
+          'Nova verzija je preuzeta. Ponovo pokrenite aplikaciju da biste primenili ažuriranja.',
+        buttons: ['Ponovo pokrenuti', 'Restartuj kasnije'],
+      };
+    case 'cp':
+      return {
+        title: 'Macaw Aжурирање',
+        detail:
+          'Нова верзија је преузета. Поново покрените апликацију да бисте применили ажурирања.',
+        buttons: ['Поново покренути', 'Рестартуј касније'],
+      };
+
+    default:
+      return {
+        title: 'Macaw Update',
+        detail:
+          'A new version has been downloaded. Restart the application to apply the updates.',
+        buttons: ['Restart', 'Later'],
+      };
+  }
+};
+
+ipcMain.on('ipc-test', async (event, _arg) => {
+  const version = app.getVersion();
+  event.reply('ipc-example', version);
 });
 
-ipcMain.on('updates-check', async () => {
+ipcMain.on('updates-check', async (_event, arg) => {
+  lang = arg;
   autoUpdater.checkForUpdatesAndNotify();
 });
 
@@ -147,12 +243,13 @@ app
   .catch(console.log);
 
 autoUpdater.on('update-not-available', (_event, releaseNotes, releaseName) => {
+  const translations = getUpdateNotAvailableMessage();
   const dialogOpts = {
     type: 'info',
-    buttons: ['Ok'],
-    title: 'Macaw Update',
+    buttons: translations.buttons,
+    title: translations.title,
     message: process.platform === 'win32' ? releaseNotes : releaseName,
-    detail: 'You are running latest version',
+    detail: translations.message,
   };
   if (mainWindow) {
     dialog.showMessageBox(mainWindow, dialogOpts);
@@ -160,12 +257,13 @@ autoUpdater.on('update-not-available', (_event, releaseNotes, releaseName) => {
 });
 
 autoUpdater.on('update-available', (_event, releaseNotes, releaseName) => {
+  const translations = getUpdateAvailableMessage();
   const dialogOpts = {
     type: 'info',
-    buttons: ['Ok'],
-    title: 'Macaw Update',
+    buttons: translations.buttons,
+    title: translations.title,
     message: process.platform === 'win32' ? releaseNotes : releaseName,
-    detail: 'A new version is being downloaded.',
+    detail: translations.detail,
   };
   if (mainWindow) {
     dialog.showMessageBox(mainWindow, dialogOpts);
@@ -180,13 +278,13 @@ autoUpdater.on('error', (error) => {
 });
 
 autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
+  const translations = getUpdateDownloaded();
   const dialogOpts = {
     type: 'info',
-    buttons: ['Restart', 'Later'],
-    title: 'Macaw Update',
+    buttons: translations.buttons,
+    title: translations.title,
     message: process.platform === 'win32' ? releaseNotes : releaseName,
-    detail:
-      'A new version has been downloaded. Restart the application to apply the updates.',
+    detail: translations.detail,
   };
   dialog
     .showMessageBox(dialogOpts)

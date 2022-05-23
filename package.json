@@ -241,7 +241,8 @@
     "react-dom": "^18.0.0",
     "react-i18next": "^11.16.9",
     "react-router-dom": "^6.3.0",
-    "react-toastify": "^9.0.1"
+    "react-toastify": "^9.0.1",
+    "v8-compile-cache": "^2.3.0"
   },
   "devEngines": {
     "node": ">=14.x",

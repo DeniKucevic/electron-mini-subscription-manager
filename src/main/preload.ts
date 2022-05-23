@@ -2,11 +2,11 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
-    myPing() {
-      ipcRenderer.send('ipc-test');
+    myPing(arg: string | null) {
+      ipcRenderer.send('ipc-test', arg);
     },
-    checkForUpdates() {
-      ipcRenderer.send('updates-check');
+    checkForUpdates(arg: string | null) {
+      ipcRenderer.send('updates-check', arg);
     },
 
     // HOME
