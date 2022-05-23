@@ -1,8 +1,11 @@
 import sqlite from 'sqlite3';
+import { app } from 'electron';
 
 const sqlite3 = sqlite.verbose();
+
+const path = app.getPath('appData');
 export const db = new sqlite3.Database(
-  './db.sqlite3',
+  `${path}/macaw/db.sqlite3`,
   // eslint-disable-next-line no-bitwise
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
   (err) => {
