@@ -47,4 +47,4 @@ window.electron.ipcRenderer.once('ipc-test', (arg: any) => {
   // eslint-disable-next-line no-console
   window.localStorage.setItem('version', arg);
 });
-window.electron.ipcRenderer.myPing();
+window.electron.ipcRenderer.myPing(window.localStorage.getItem('lang'));

@@ -57,9 +57,13 @@ export const Sidebar = () => {
         <button
           type="button"
           className="btn btn-default"
-          onClick={() => window.electron.ipcRenderer.checkForUpdates()}
+          onClick={() =>
+            window.electron.ipcRenderer.checkForUpdates(
+              window.localStorage.getItem('lang')
+            )
+          }
         >
-          Check for updates
+          {t('common:links.check-update')}
         </button>
       </span>
     </div>

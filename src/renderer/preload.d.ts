@@ -2,8 +2,8 @@ declare global {
   interface Window {
     electron: {
       ipcRenderer: {
-        myPing(): void;
-        checkForUpdates(): void;
+        myPing(arg: string | null): void;
+        checkForUpdates(arg: string | null): void;
         // HOME
         getHomeChart(arg: { today: Date }): void;
         // USERS
