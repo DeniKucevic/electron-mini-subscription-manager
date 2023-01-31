@@ -158,7 +158,7 @@ If you see this message something went wrong. If you have trouble figuring it ou
 
 ## **Customer Support**💭
 
-If you have trouble with software, question, want some feature built in for you, something changed or want to support me you can contact me on **email**: [denikucevic@gmail.com](mailto:denikucevic@gmail.com)
+If you have trouble with software, question, want some feature built in for you, or something changed you can contact me on **email**: [denikucevic@gmail.com](mailto:denikucevic@gmail.com)
 
 or try on linkedin: [denikucevic](https://www.linkedin.com/in/denis-kucevic/)
 
