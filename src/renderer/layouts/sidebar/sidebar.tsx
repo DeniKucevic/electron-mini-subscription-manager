@@ -27,6 +27,10 @@ export const Sidebar = () => {
           <span className="icon icon-users" />
           {t('common:links.users')}
         </BclNavLink>
+        <BclNavLink to="/deactive-users">
+          <span className="icon icon-users" />
+          {t('common:links.deactive')}
+        </BclNavLink>
         <BclNavLink to="/subscription-model">
           <span className="icon icon-archive" />
           {t('common:links.subscription-models')}

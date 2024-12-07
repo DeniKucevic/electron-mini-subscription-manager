@@ -24,7 +24,7 @@ type User = {
   inactive: boolean;
 };
 
-export const Users: React.FC = () => {
+export const DeactiveUsers: React.FC = () => {
   const { t } = useTranslation();
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState('');
@@ -34,7 +34,6 @@ export const Users: React.FC = () => {
 
   const [selectedUser, setSelectedUser] = useState({} as User);
 
-  const [isShowing, toggle] = useModal();
   const [isShowingUser, toggleUser] = useModal();
 
   window.electron.ipcRenderer.once('users', (arg) => {
@@ -42,7 +41,7 @@ export const Users: React.FC = () => {
   });
 
   useEffect(() => {
-    window.electron.ipcRenderer.getAllActiveUsers();
+    window.electron.ipcRenderer.getAllInactiveUsers();
   }, []);
 
   const handleUserModal = (user: User) => {
@@ -106,25 +105,14 @@ export const Users: React.FC = () => {
             <span className="icon icon-search icon-text" />
             {t('common:user-table.filters')}
           </button>
-
-          <button
-            type="button"
-            className="btn btn-default pull-right"
-            onClick={() => {
-              toggle();
-            }}
-          >
-            <span className="icon icon-user-add icon-text" />
-            {t('common:user-table.insert-new-user')}
-          </button>
         </div>
       </Header>
       <UserTable
         handleSort={handleSort}
         handleUserModal={handleUserModal}
         users={users}
+        inactiveUsers
       />
-      <AddUserModal toggle={toggle} isShowing={isShowing} />
       <EditUserModal
         handleUserEdit={handleUserEdit}
         isShowingUser={isShowingUser}
@@ -136,4 +124,4 @@ export const Users: React.FC = () => {
   );
 };
 
-export default Users;
+export default DeactiveUsers;

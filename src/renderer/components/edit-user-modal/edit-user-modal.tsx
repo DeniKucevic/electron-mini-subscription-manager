@@ -28,6 +28,7 @@ type User = {
   note: string;
   subscription_start: string;
   subscription_end: string;
+  inactive: boolean;
 };
 
 export const EditUserModal: React.FC<EditUserModalProps> = ({

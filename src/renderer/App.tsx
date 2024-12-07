@@ -7,6 +7,8 @@ import { DefaultLayout } from './layouts/default-layout';
 import { Home } from './pages/home';
 import { About } from './pages/about';
 import { Users } from './pages/users';
+import { DeactiveUsers } from './pages/deactive-users';
+
 import { SubscriptionModel } from './pages/subscription-models';
 import { ConfirmationDialogProvider } from './context/confirmation-dialog';
 
@@ -21,6 +23,7 @@ export const App = () => {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="users" element={<Users />} />
+            <Route path="deactive-users" element={<DeactiveUsers />} />
             <Route path="subscription-model" element={<SubscriptionModel />} />
           </Route>
         </Routes>

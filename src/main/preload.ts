@@ -17,6 +17,12 @@ contextBridge.exposeInMainWorld('electron', {
     getAllUsers() {
       ipcRenderer.send('get-all-users');
     },
+    getAllActiveUsers() {
+      ipcRenderer.send('get-all-active-users');
+    },
+    getAllInactiveUsers() {
+      ipcRenderer.send('get-all-inactive-users');
+    },
     searchUsers(arg: string) {
       ipcRenderer.send('search-users', arg);
     },
@@ -42,6 +48,12 @@ contextBridge.exposeInMainWorld('electron', {
     },
     deleteUser(arg: { id: string }) {
       ipcRenderer.send('delete-user', arg);
+    },
+    deactivateUser(arg: { id: string }) {
+      ipcRenderer.send('deactivate-user', arg);
+    },
+    activateUser(arg: { id: string }) {
+      ipcRenderer.send('activate-user', arg);
     },
     insertUser(request: {
       firstName: string;

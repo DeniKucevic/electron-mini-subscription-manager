@@ -16,18 +16,21 @@ type User = {
   note: string;
   subscription_start: string;
   subscription_end: string;
+  inactive: boolean;
 };
 
 export type UserTableProps = {
   handleSort: (sort: string) => void;
   handleUserModal: (user: User) => void;
   users: User[];
+  inactiveUsers?: boolean;
 };
 
 export const UserTable: React.FC<UserTableProps> = ({
   handleSort,
   handleUserModal,
   users,
+  inactiveUsers,
 }) => {
   const today = new Date();
   const { t } = useTranslation();
@@ -88,7 +91,13 @@ export const UserTable: React.FC<UserTableProps> = ({
     }
   };
 
-  const handleSubscriptionStatus = (subscriptionEnd: string) => {
+  const handleSubscriptionStatus = (
+    subscriptionEnd: string,
+    inactive: boolean
+  ) => {
+    if (inactive) {
+      return <span className="icon icon-db-shape" style={{ color: 'gray' }} />;
+    }
     if (isAfter(today, Date.parse(subscriptionEnd)))
       return <span className="icon icon-db-shape" style={{ color: 'red' }} />;
     if (differenceInDays(Date.parse(subscriptionEnd), today) >= 3)
@@ -114,6 +123,33 @@ export const UserTable: React.FC<UserTableProps> = ({
 
     if (confirmed) {
       window.electron.ipcRenderer.deleteUser({ id });
+    }
+  };
+
+  const handleMarkAsInactive = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number,
+    fname: string,
+    lname: string,
+    inactiveUsers?: boolean
+  ) => {
+    e.stopPropagation();
+    const confirmed = await getConfirmation({
+      title: t('common:messages.title'),
+      message: inactiveUsers
+        ? ''
+        : t('common:messages.deactivate-user', {
+            fname,
+            lname,
+          }),
+    });
+
+    if (confirmed) {
+      if (inactiveUsers) {
+        window.electron.ipcRenderer.activateUser({ id });
+      } else {
+        window.electron.ipcRenderer.deactivateUser({ id });
+      }
     }
   };
 
@@ -171,33 +207,55 @@ export const UserTable: React.FC<UserTableProps> = ({
                   })}
                 </td>
                 <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
-                  {handleSubscriptionStatus(user.subscription_end)}
+                  {handleSubscriptionStatus(
+                    user.subscription_end,
+                    user.inactive
+                  )}
                 </td>
                 <td>
                   <div className="btn-group">
+                    {inactiveUsers ? null : (
+                      <button
+                        type="button"
+                        className="btn btn-mini btn-default"
+                        onClick={(e) =>
+                          handleAddMonth(
+                            e,
+                            user.id,
+                            user.subscription_end,
+                            user.fname,
+                            user.lname
+                          )
+                        }
+                      >
+                        <span className="icon icon-plus-circled" />
+                      </button>
+                    )}
+                    {inactiveUsers ? null : (
+                      <button
+                        type="button"
+                        className="btn btn-mini btn-default"
+                        onClick={(e) =>
+                          handleSingleRemove(e, user.id, user.fname, user.lname)
+                        }
+                      >
+                        <span className="icon icon-trash" />
+                      </button>
+                    )}
                     <button
                       type="button"
                       className="btn btn-mini btn-default"
                       onClick={(e) =>
-                        handleAddMonth(
+                        handleMarkAsInactive(
                           e,
                           user.id,
-                          user.subscription_end,
                           user.fname,
-                          user.lname
+                          user.lname,
+                          inactiveUsers
                         )
                       }
                     >
-                      <span className="icon icon-plus-circled" />
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-mini btn-default"
-                      onClick={(e) =>
-                        handleSingleRemove(e, user.id, user.fname, user.lname)
-                      }
-                    >
-                      <span className="icon icon-trash" />
+                      <span className="icon icon-logout" />
                     </button>
                   </div>
                 </td>

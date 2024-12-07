@@ -33,6 +33,7 @@
     "title": "Navigation",
     "home": "Home",
     "users": "Users",
+    "deactive": "Inactive users",
     "subscription-models": "Subscription models",
     "about": "About",
     "language": "Language",
@@ -51,6 +52,7 @@
   "messages": {
     "extend-subscription": "Extend <strong>{{fname}} {{lname}}</strong> subscription from: <strong>{{dateFrom}}</strong> to: <strong>{{dateTo}}</strong>",
     "remove-user": "Are you sure you want to remove <strong>{{fname}} {{lname}}</strong> from database?",
+    "deactivate-user": "Are you sure you want to mark as inactive <strong>{{fname}} {{lname}}</strong>?",
     "remove-model": "Are you sure you want to remove <strong>{{name}}</strong> model from database?",
     "title": "Attention!"
   },

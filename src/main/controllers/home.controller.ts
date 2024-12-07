@@ -9,8 +9,8 @@ ipcMain.on('home-chart', async (event, arg: { today: Date }) => {
     toExpire: [] as any[],
   };
   const sql = `SELECT id, COUNT(*) AS total,
-       SUM(CASE WHEN subscription_end < "${today.toISOString()}" THEN 1 ELSE 0 END) expired_count,
-       SUM(CASE WHEN subscription_end > "${today.toISOString()}" THEN 1 ELSE 0 END) valid_count
+       SUM(CASE WHEN subscription_end < "${today.toISOString()}" AND inactive IS NULL THEN 1 ELSE 0 END) expired_count,
+       SUM(CASE WHEN subscription_end > "${today.toISOString()}" AND inactive IS NULL THEN 1 ELSE 0 END) valid_count
        FROM users`;
   db.all(sql, (err, rows) => {
     if (err) {
@@ -19,7 +19,7 @@ ipcMain.on('home-chart', async (event, arg: { today: Date }) => {
     }
     result.chart = rows;
     db.all(
-      `SELECT * FROM users WHERE subscription_end > "${today.toISOString()}" ORDER BY subscription_end ASC LIMIT 10`,
+      `SELECT * FROM users WHERE subscription_end > "${today.toISOString()}" AND inactive IS NULL ORDER BY subscription_end ASC LIMIT 10`,
       (err1, rows1) => {
         if (err1) {
           event.reply('error', err1);

@@ -12,6 +12,28 @@ ipcMain.on('get-all-users', async (event) => {
   });
 });
 
+ipcMain.on('get-all-active-users', async (event) => {
+  const sql = 'SELECT * FROM users WHERE inactive IS NULL';
+  db.all(sql, (err, rows) => {
+    if (err) {
+      event.reply('error', err);
+      return;
+    }
+    event.reply('users', rows);
+  });
+});
+
+ipcMain.on('get-all-inactive-users', async (event) => {
+  const sql = 'SELECT * FROM users WHERE inactive IS NOT NULL';
+  db.all(sql, (err, rows) => {
+    if (err) {
+      event.reply('error', err);
+      return;
+    }
+    event.reply('users', rows);
+  });
+});
+
 ipcMain.on('search-users', async (event, arg: string) => {
   const sql = `SELECT * FROM users WHERE fname LIKE "%${arg}%" OR lname LIKE "%${arg}%"`;
   db.all(sql, (err, rows) => {
@@ -107,6 +129,36 @@ ipcMain.on('delete-user', async (event, arg: { id: number }) => {
   });
 });
 
+ipcMain.on('deactivate-user', async (event, arg: { id: number }) => {
+  const { id } = arg;
+  const sql = `UPDATE users SET inactive = 1 WHERE id = ${id}`;
+  db.all(sql, (err) => {
+    if (err) event.reply('error', err);
+    db.all('SELECT * FROM users WHERE inactive IS NULL', (err2, rows) => {
+      if (err) {
+        event.reply('error', err2);
+        return;
+      }
+      event.reply('users', rows);
+    });
+  });
+});
+
+ipcMain.on('activate-user', async (event, arg: { id: number }) => {
+  const { id } = arg;
+  const sql = `UPDATE users SET inactive = NULL WHERE id = ${id}`;
+  db.all(sql, (err) => {
+    if (err) event.reply('error', err);
+    db.all('SELECT * FROM users WHERE inactive IS NOT NULL', (err2, rows) => {
+      if (err) {
+        event.reply('error', err2);
+        return;
+      }
+      event.reply('users', rows);
+    });
+  });
+});
+
 ipcMain.on(
   'insert-user',
   async (
@@ -135,7 +187,7 @@ ipcMain.on(
     const sql = `INSERT INTO users (fname, lname, email, address, phone, note, subscription_start, subscription_end) VALUES ("${firstName}", "${lastName}", "${email}", "${address}", "${phone}", "${note}", "${subscriptionStart}", "${subscriptionEnd}")`;
     db.all(sql, (err) => {
       if (err) event.reply('error', err);
-      db.all('SELECT * FROM users', (err2, rows) => {
+      db.all('SELECT * FROM users WHERE inactive IS NULL', (err2, rows) => {
         if (err) {
           event.reply('error', err2);
           return;

@@ -8,6 +8,8 @@ declare global {
         getHomeChart(arg: { today: Date }): void;
         // USERS
         getAllUsers(): void;
+        getAllActiveUsers(): void;
+        getAllInactiveUsers(): void;
         searchUsers(arg: string): void;
         sortUsers(arg: {
           search: string;
@@ -26,6 +28,9 @@ declare global {
           subscriptionEnd: string;
         }): void;
         deleteUser(arg: { id: number }): void;
+        deactivateUser(arg: { id: number }): void;
+        activateUser(arg: { id: number }): void;
+        activateUser(arg: { id: number }): void;
         insertUser(request: {
           firstName: string;
           lastName: string;

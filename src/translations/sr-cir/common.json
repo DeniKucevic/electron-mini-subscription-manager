@@ -34,6 +34,7 @@
     "title": "Навигација",
     "home": "Почетна",
     "users": "Корисници",
+    "deactive": "Неактивни корисници",
     "subscription-models": "Модели претплате",
     "about": "Информације",
     "language": "Језик",
@@ -52,6 +53,7 @@
   "messages": {
     "extend-subscription": "Продужи <strong>{{fname}} {{lname}}</strong> претплату од: <strong>{{dateFrom}}</strong> до: <strong>{{dateTo}}</strong>",
     "remove-user": "Да ли сте сигурни да желите да обришете <strong>{{fname}} {{lname}}</strong> из базе?",
+    "deactivate-user": "Да ли сте сигурни да желите да обележите <strong>{{fname}} {{lname}}</strong> као неактивног?",
     "remove-model": "Да ли сте сигурни да желите да обришете <strong>{{name}}</strong> модел из базе?",
     "title": "Пажња!"
   },
